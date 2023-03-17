@@ -36,3 +36,29 @@
     transform: rotate(360deg);
   }
 }
+.header img{
+  width: 100px;
+}
+.app-wrapper{
+  width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-areas:
+    "h h"
+    "n c";
+  grid-template-rows: 110px 1fr;
+  grid-template-columns: 2fr 10fr;
+
+}
+.header{
+  grid-area: h;
+  background-color: blueviolet;
+}
+.nav{
+  grid-area: n;
+  background-color: #61dafb;
+}
+.content{
+  grid-area: c;
+  background-color: beige;
+}
