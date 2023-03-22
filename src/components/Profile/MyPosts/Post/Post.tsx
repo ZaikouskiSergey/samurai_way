@@ -10,7 +10,7 @@ const Post = (props: PostPropsType) => {
         <div className={s.item}>
             <img src='https://sm.ign.com/ign_nordic/cover/a/avatar-gen/avatar-generations_prsz.jpg'/>
             {props.message}
-            <div>
+            <div className={s.spaned}>
                 <span>like</span> {props.likesCount}
             </div>
         </div>
