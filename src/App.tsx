@@ -12,26 +12,36 @@ import Settings from "./components/Settings/Settings";
 type AppPropsType = {
     state: {
         profilePage: {
-            posts: Array<PostsType>
+            posts: {
+                id?: number,
+                message: string,
+                likesCount: number
+            }
         },
         dialogsPage: {
-            dialogs: Array<DialogType>,
-            messages: Array<MessageType>
+            dialogs: {
+                name: string,
+                id: string | number
+            },
+            messages: {
+                message: string,
+                id?: number
+            }
         }
     }
-}
-type MessageType = {
-    message: string,
-    id?: number
-}
-type DialogType = {
-    name: string,
-    id: string | number
-}
-type PostsType = {
-    id?: number,
-    message: string,
-    likesCount: number
+
+    /*type MessageType = {
+        message: string,
+        id?: number
+    }
+    type DialogType = {
+        name: string,
+        id: string | number
+    }
+    type PostsType = {
+        id?: number,
+        message: string,
+        likesCount: number*/
 }
 const App = (props: AppPropsType) => {
     return (
@@ -41,8 +51,7 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path="/profile"
-                           render={() => <Profile
-                               posts={props.state.profilePage}/>}/>
+                           render={() => <Profile posts={props.state.profilePage}/>}/>
                     <Route path="/dialogs"
                            render={() => <Dialogs
                                state={props.state.dialogsPage}/>}/>

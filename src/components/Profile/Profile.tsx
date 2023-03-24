@@ -6,19 +6,22 @@ import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
     profilePage: {
-        posts: Array<PostsType>
+        posts: {
+            id?: number,
+            message: string,
+            likesCount: number}
     }
 }
-type PostsType = {
+/*type PostsType = {
     id?: number,
     message: string,
     likesCount: number
-}
+}*/
 const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.profilePage.posts}/>
+            <MyPosts posts={props.state.posts}/>
         </div>
     )
 }
