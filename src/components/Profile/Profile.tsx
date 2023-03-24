@@ -5,7 +5,9 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
-    posts: Array<PostsType>
+    profilePage: {
+        posts: Array<PostsType>
+    }
 }
 type PostsType = {
     id?: number,
@@ -16,7 +18,7 @@ const Profile = (props: ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.posts}/>
+            <MyPosts posts={props.profilePage.posts}/>
         </div>
     )
 }

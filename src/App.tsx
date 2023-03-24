@@ -10,9 +10,15 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 type AppPropsType = {
-    posts: Array<PostsType>,
-    dialogs: Array<DialogType>,
-    messages: Array<MessageType>
+    state: {
+        profilePage: {
+            posts: Array<PostsType>
+        },
+        dialogsPage: {
+            dialogs: Array<DialogType>,
+            messages: Array<MessageType>
+        }
+    }
 }
 type MessageType = {
     message: string,
@@ -34,8 +40,12 @@ const App = (props: AppPropsType) => {
                 <Header/>
                 <Navbar/>
                 <div className='app-wrapper-content'>
-                    <Route path="/profile" render={() => <Profile posts={props.posts}/>}/>
-                    <Route path="/dialogs" render={() => <Dialogs dialogs={props.dialogs} messages={props.messages}/>}/>
+                    <Route path="/profile"
+                           render={() => <Profile
+                               posts={props.state.profilePage}/>}/>
+                    <Route path="/dialogs"
+                           render={() => <Dialogs
+                               state={props.state.dialogsPage}/>}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
