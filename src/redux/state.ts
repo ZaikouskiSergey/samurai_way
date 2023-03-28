@@ -44,6 +44,7 @@ let state: stateType = {
             {id: 5, name: 'Victor'},
             {id: 6, name: 'Valera'},
         ],
-    }
+    },
+
 }
 export default state;

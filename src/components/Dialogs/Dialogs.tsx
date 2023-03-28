@@ -5,8 +5,10 @@ import Message from "./Messege/Message";
 import state from "../../redux/state";
 
 type DialogsPropsType = {
+    state: {
         dialogs: Array<DialogType>,
         messages: Array<MessageType>
+    }
 }
 type DialogType = {
     name: string,
@@ -18,10 +20,10 @@ type MessageType = {
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-    let dialogsElements = props.dialogs.map(dialog => (
+    let dialogsElements = props.state.dialogs.map(dialog => (
         <DialogItem name={dialog.name} id={dialog.id}/>))
 
-    let messagesElements = props.messages.map(message => (
+    let messagesElements = props.state.messages.map(message => (
         <Message message={message.message}/>
     ))
 
@@ -30,7 +32,6 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={s.dialogItems}>
                 {dialogsElements}
             </div>
-
             <div className={s.messages}>
                 {messagesElements}
             </div>

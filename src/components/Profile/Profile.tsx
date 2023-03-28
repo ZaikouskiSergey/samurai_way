@@ -5,7 +5,7 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 
 type ProfilePropsType = {
-    profilePage: {
+    state: {
         posts: Array<PostsType>
     },
 }
