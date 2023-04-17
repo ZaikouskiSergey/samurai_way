@@ -19,6 +19,22 @@
 img{
     height: 30px;
 }
+.buttonAndInput{
+    padding-left: 200px;
+    height: 40px;
+    width: auto;
+
+    display: flex;
+}
+.buttonAndInput button{
+    height: 40px;
+    width: 70px;
+    background-color: dodgerblue;
+}
+.buttonAndInput input{
+    min-width: 250px;
+
+}
 .message{
 
 }
