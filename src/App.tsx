@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import {addPost} from "./redux/state";
 
 type AppPropsType = {
     state: {
@@ -18,7 +19,8 @@ type AppPropsType = {
             dialogs: Array<DialogType>,
             messages: Array<MessageType>
         }
-    }
+    },
+    addPost: (postMessage: string)=>void
 }
 type MessageType = {
     message: string,
@@ -42,7 +44,10 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path="/profile"
-                           render={() => <Profile state={props.state.profilePage}/>}/>
+                           render={() => <Profile
+                               state={props.state.profilePage}
+                               addPost={props.addPost}
+                           />}/>
                     <Route path="/dialogs"
                            render={() => <Dialogs
                                state={props.state.dialogsPage}/>}/>
