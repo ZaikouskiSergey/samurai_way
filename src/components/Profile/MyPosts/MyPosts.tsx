@@ -18,9 +18,9 @@ const MyPosts = (props: MyPostsPropsType) => {
     ))
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
     const addPost = () => {
-        debugger
         const text: string = newPostElement.current?.value || ""
         props.addPost(text)
+        newPostElement.current!.value="";
     }
 
     return (
