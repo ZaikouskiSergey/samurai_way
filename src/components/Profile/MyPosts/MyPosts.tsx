@@ -5,12 +5,15 @@ import {Debugger} from "inspector";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    addPost: (postMessage: string) => void
+    addPost: () => void
+    newPostText: string
+    updateNewPostText:(newText: string)=>void
 }
 type PostsType = {
     id?: number,
     message: string,
     likesCount: number
+
 }
 const MyPosts = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map(p => (
@@ -18,9 +21,13 @@ const MyPosts = (props: MyPostsPropsType) => {
     ))
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
     const addPost = () => {
+        props.addPost()
+
+    }
+    const onChangePost = (e:ChangeEvent<HTMLTextAreaElement>) => {
         const text: string = newPostElement.current?.value || ""
-        props.addPost(text)
-        newPostElement.current!.value="";
+        props.updateNewPostText(text)
+
     }
 
     return (
@@ -28,7 +35,10 @@ const MyPosts = (props: MyPostsPropsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement}></textarea>
+                    <textarea
+                        ref={newPostElement}
+                        onChange={onChangePost}
+                        value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
