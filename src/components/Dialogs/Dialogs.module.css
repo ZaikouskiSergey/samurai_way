@@ -20,11 +20,7 @@ img{
     height: 30px;
 }
 .buttonAndInput{
-    padding-left: 200px;
-    height: 40px;
-    width: auto;
 
-    display: flex;
 }
 .buttonAndInput button{
     height: 40px;

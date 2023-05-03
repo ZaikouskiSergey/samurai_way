@@ -12,7 +12,8 @@ export type stateType = {
     },
     dialogsPage: {
         dialogs: Array<DialogType>,
-        messages: Array<MessageType>
+        messages: Array<MessageType>,
+        newMessageBody: string
     }
 }
 export type MessageType = {
@@ -31,6 +32,9 @@ export type PostsType = {
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
+const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
+const SEND_MESSAGE = "SEND-MESSAGE";
 
 let store: StoreType = {
     _state: {
@@ -57,6 +61,7 @@ let store: StoreType = {
                 {id: 5, name: 'Victor'},
                 {id: 6, name: 'Valera'},
             ],
+            newMessageBody: ""
         },
     },
     _callSubscriber(state: stateType) {
@@ -83,11 +88,24 @@ let store: StoreType = {
         } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state);
+        } else if (action.type === UPDATE_NEW_MESSAGE_BODY) {
+            this._state.dialogsPage.newMessageBody = action.body
+            this._callSubscriber(this._state)
+        } else if (action.type === SEND_MESSAGE) {
+            let body = this._state.dialogsPage.newMessageBody
+            this._state.dialogsPage.newMessageBody = '';
+            this._state.dialogsPage.messages.push({id: 5, message: body})
+            this._callSubscriber(this._state)
         }
     }
 }
 export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text})
+
+export const sendMessageCreator = () => ({type: SEND_MESSAGE})
+export const updateNewMessageBodyCreator = (body: string) =>
+    ({type: UPDATE_NEW_MESSAGE_BODY, body: body})
+
 
 export default store;

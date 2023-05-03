@@ -18,7 +18,8 @@ type AppPropsType = {
         },
         dialogsPage: {
             dialogs: Array<DialogType>,
-            messages: Array<MessageType>
+            messages: Array<MessageType>,
+            newMessageBody: string
         }
     },
     dispatch: (action: any) => void
@@ -37,7 +38,6 @@ type PostsType = {
     likesCount: number
 }
 const App = (props: AppPropsType) => {
-
     return (
         <Router>
             <div className='app-wrapper'>
@@ -52,8 +52,11 @@ const App = (props: AppPropsType) => {
                            />}/>
 
                     <Route path="/dialogs"
-                           render={() => <Dialogs
-                               state={props.state.dialogsPage}/>}/>
+                           render={() => <
+                               Dialogs
+                               state={props.state.dialogsPage}
+                               dispatch={props.dispatch}
+                           />}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
