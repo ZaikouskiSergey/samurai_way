@@ -5,9 +5,8 @@ import {Debugger} from "inspector";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
-    addPost: () => void
     newPostText: string
-    updateNewPostText:(newText: string)=>void
+    dispatch: (action: any) => void
 }
 type PostsType = {
     id?: number,
@@ -24,9 +23,9 @@ const MyPosts = (props: MyPostsPropsType) => {
         props.dispatch({type: "ADD-POST"})
 
     }
-    const onChangePost = (e:ChangeEvent<HTMLTextAreaElement>) => {
+    const onChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const text: string = newPostElement.current?.value || ""
-        let action = {type:"UPDATE-NEW-POST-TEXT", newText: text };
+        let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
         props.dispatch(action)
 
 

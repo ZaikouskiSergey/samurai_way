@@ -9,8 +9,7 @@ type ProfilePropsType = {
         posts: Array<PostsType>
         newPostText: string
     },
-    addPost: () => void
-    updateNewPostText:(newText: string)=>void
+    dispatch: (action: any) => void
 }
 type PostsType = {
     id?: number,

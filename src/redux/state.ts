@@ -1,5 +1,35 @@
-let store = {
-    _state : {
+export type StoreType = {
+    _state: stateType
+    _callSubscriber: (state: stateType) => void
+    getState: () => stateType
+    dispatch: (action: any) => void
+    subscribe: (observer: any) => void
+}
+export type stateType = {
+    profilePage: {
+        posts: Array<PostsType>
+        newPostText: string
+    },
+    dialogsPage: {
+        dialogs: Array<DialogType>,
+        messages: Array<MessageType>
+    }
+}
+export type MessageType = {
+    message: string,
+    id?: number
+}
+export type DialogType = {
+    name: string,
+    id: string | number
+}
+export type PostsType = {
+    id?: number,
+    message: string,
+    likesCount: number
+}
+let store: StoreType = {
+    _state: {
         profilePage: {
             posts: [
                 {id: 1, message: 'Hi, how are you?', likesCount: 15},
@@ -36,8 +66,8 @@ let store = {
         this._callSubscriber = observer
     },
 
-    dispatch(action:any){
-        if(action.type === 'ADD-POST'){
+    dispatch(action: any) {
+        if (action.type === 'ADD-POST') {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -46,43 +76,11 @@ let store = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ""
             this._callSubscriber(this._state);
-        } else if (action.type=== "UPDATE-NEW-POST-TEXT"){
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber(this._state);
         }
     }
 }
-export type StoreType = {
-    _store: stateType
-    getState: () => void
-    callSubscriber: (state: stateType) => void
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    subscribe:(observer: any)=> void
 
-
-}
-export type stateType = {
-    profilePage: {
-        posts: Array<PostsType>
-        newPostText: string
-    },
-    dialogsPage: {
-        dialogs: Array<DialogType>,
-        messages: Array<MessageType>
-    }
-}
-export type MessageType = {
-    message: string,
-    id?: number
-}
-export type DialogType = {
-    name: string,
-    id: string | number
-}
-export type PostsType = {
-    id?: number,
-    message: string,
-    likesCount: number
-}
 export default store;

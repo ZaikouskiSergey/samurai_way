@@ -21,8 +21,7 @@ type AppPropsType = {
             messages: Array<MessageType>
         }
     },
-    addPost: () => void
-    updateNewPostText:(newText: string)=>void
+    dispatch: (action: any) => void
 }
 type MessageType = {
     message: string,
@@ -46,7 +45,8 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path="/profile"
-                           render={() => <Profile
+                           render={() => <
+                               Profile
                                state={props.state.profilePage}
                                dispatch={props.dispatch}
                            />}/>
