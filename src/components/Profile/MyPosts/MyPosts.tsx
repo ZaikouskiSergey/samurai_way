@@ -1,7 +1,7 @@
 import React, {ChangeEvent, RefObject} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {Debugger} from "inspector";
+import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/state";
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
@@ -14,21 +14,19 @@ type PostsType = {
     likesCount: number
 
 }
+
 const MyPosts = (props: MyPostsPropsType) => {
     let postsElements = props.posts.map(p => (
         <Post message={p.message} likesCount={p.likesCount}/>
     ))
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
     const addPost = () => {
-        props.dispatch({type: "ADD-POST"})
-
+        props.dispatch(addPostActionCreator())
     }
     const onChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const text: string = newPostElement.current?.value || ""
-        let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
-        props.dispatch(action)
-
-
+        //let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
+        props.dispatch(updateNewPostTextActionCreator(text))
     }
 
     return (
