@@ -8,6 +8,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
+import {StoreType} from "./redux/state";
 
 
 type AppPropsType = {
@@ -23,6 +24,7 @@ type AppPropsType = {
         }
     },
     dispatch: (action: any) => void
+    store:StoreType
 }
 type MessageType = {
     message: string,
@@ -53,9 +55,7 @@ const App = (props: AppPropsType) => {
 
                     <Route path="/dialogs"
                            render={() => <
-                               Dialogs
-                               state={props.state.dialogsPage}
-                               dispatch={props.dispatch}
+                               Dialogs store={props.store}
                            />}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
