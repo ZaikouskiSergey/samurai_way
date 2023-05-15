@@ -1,8 +1,24 @@
 import React from 'react';
+import {PostsType} from "./store";
 
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
-export const profileReducer = (state: any, action: any) => {
+
+type ProfileInitialStateType = {
+    posts: Array<PostsType>
+    newPostText: string
+}
+
+const initialState = {
+        posts: [
+            {id: 1, message: 'Hi, how are you?', likesCount: 15},
+            {id: 2, message: "It's my first post", likesCount: 20},
+            {id: 3, message: "Blabla", likesCount: 2}
+        ],
+        newPostText: 'it-kamasutra.com'
+    }
+
+export const profileReducer = (state: ProfileInitialStateType = initialState, action: any) => {
     switch (action.type) {
         case ADD_POST:
             let newPost = {

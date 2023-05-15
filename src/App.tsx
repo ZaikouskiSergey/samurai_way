@@ -8,7 +8,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {StoreType} from "./redux/state";
+import {StoreType} from "./redux/store";
 
 
 type AppPropsType = {
@@ -24,7 +24,7 @@ type AppPropsType = {
         }
     },
     dispatch: (action: any) => void
-    store:StoreType
+    store: any
 }
 type MessageType = {
     message: string,

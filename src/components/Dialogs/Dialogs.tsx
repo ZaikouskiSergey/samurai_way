@@ -2,7 +2,7 @@ import React, {ChangeEvent, createRef, RefObject, TextareaHTMLAttributes} from '
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messege/Message";
-import {StoreType} from "../../redux/state";
+import {StoreType} from "../../redux/store";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 
 
