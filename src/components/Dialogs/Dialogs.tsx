@@ -7,13 +7,20 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialo
 
 
 type DialogsPropsType = {
-    store:  StoreType
-   /* state: {
+    updateNewMessageBody: (body: string) => void
+    sendMessage: () => void
+    state: {
         dialogs: Array<DialogType>,
         messages: Array<MessageType>,
         newMessageBody: string
-    },
-    dispatch: (action: any) => void*/
+    }
+    /*store: StoreType*/
+    /* state: {
+         dialogs: Array<DialogType>,
+         messages: Array<MessageType>,
+         newMessageBody: string
+     },
+     dispatch: (action: any) => void*/
 }
 type DialogType = {
     name: string,
@@ -25,7 +32,7 @@ type MessageType = {
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-    let state = props.store.getState().dialogsPage;
+    let state = props.state;
 
     let dialogsElements = state.dialogs.map(dialog => (
         <DialogItem name={dialog.name} id={dialog.id}/>))
@@ -38,10 +45,11 @@ const Dialogs = (props: DialogsPropsType) => {
 
     const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let body = e.currentTarget.value
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBody(body)
+
     }
     const addNewMessage = () => {
-        props.store.dispatch(sendMessageCreator())
+        props.sendMessage()
     }
 
     return (

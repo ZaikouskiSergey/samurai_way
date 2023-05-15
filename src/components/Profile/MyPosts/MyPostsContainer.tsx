@@ -1,13 +1,14 @@
 import React from "react";
-
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
+import {StoreType} from "../../../redux/store";
 
 
 type MyContainerPostsPropsType = {
-    posts: Array<PostsType>
+    store:  StoreType
+   /* posts: Array<PostsType>
     newPostText: string
-    dispatch: (action: any) => void
+    dispatch: (action: any) => void*/
 }
 type PostsType = {
     id?: number,
@@ -17,20 +18,21 @@ type PostsType = {
 }
 
 const MyPostsContainer = (props: MyContainerPostsPropsType) => {
+    let state = props.store.getState();
     const addPost = () => {
-        props.dispatch(addPostActionCreator())
+        props.store.dispatch(addPostActionCreator())
     }
     const onChangePost = (text: string) => {
         let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
-        props.dispatch(updateNewPostTextActionCreator(text))
+        props.store.dispatch(updateNewPostTextActionCreator(text))
     }
 
     return (
         <MyPosts
         updateNewPostText={onChangePost}
         addPost={addPost}
-        posts={props.posts}
-        newPostText={props.newPostText}
+        posts={state.profilePage.posts}
+        newPostText={state.profilePage.newPostText}
     />)
 }
 export default MyPostsContainer;

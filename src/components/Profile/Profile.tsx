@@ -4,13 +4,16 @@ import Post from "./MyPosts/Post/Post";
 import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {StoreType} from "../../redux/store";
 
 type ProfilePropsType = {
-    state: {
+    store:  StoreType
+
+   /* state: {
         posts: Array<PostsType>
         newPostText: string
     },
-    dispatch: (action: any) => void
+    dispatch: (action: any) => void*/
 }
 type PostsType = {
     id?: number,
@@ -18,13 +21,12 @@ type PostsType = {
     likesCount: number
 }
 const Profile = (props: ProfilePropsType) => {
+
     return (
         <div>
             <ProfileInfo/>
             <MyPostsContainer
-                posts={props.state.posts}
-                dispatch={props.dispatch}
-                newPostText={props.state.newPostText}
+                store={props.store}
             />
         </div>
     )
