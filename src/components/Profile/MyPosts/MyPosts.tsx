@@ -1,13 +1,14 @@
 import React, {ChangeEvent, RefObject} from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
-import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
+
 
 
 type MyPostsPropsType = {
     posts: Array<PostsType>
     newPostText: string
-    dispatch: (action: any) => void
+    updateNewPostText: (text: string) => void
+    addPost: () => void
 }
 type PostsType = {
     id?: number,
@@ -21,13 +22,12 @@ const MyPosts = (props: MyPostsPropsType) => {
         <Post message={p.message} likesCount={p.likesCount}/>
     ))
     let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
-    const addPost = () => {
-        props.dispatch(addPostActionCreator())
+    const onAddPost = () => {
+        props.addPost()
     }
     const onChangePost = (e: ChangeEvent<HTMLTextAreaElement>) => {
         const text: string = newPostElement.current?.value || ""
-        //let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
-        props.dispatch(updateNewPostTextActionCreator(text))
+        props.updateNewPostText(text)
     }
 
     return (
@@ -41,7 +41,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                         value={props.newPostText}/>
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
             </div>
             <div className={s.posts}>
