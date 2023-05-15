@@ -40,7 +40,7 @@ type PostsType = {
     message: string,
     likesCount: number
 }
-const App = (props: AppPropsType) => {
+const App = () => {
     return (
         <Router>
             <div className='app-wrapper'>
@@ -48,15 +48,11 @@ const App = (props: AppPropsType) => {
                 <Navbar/>
                 <div className='app-wrapper-content'>
                     <Route path="/profile"
-                           render={() => <
-                               Profile
-                               store={props.store}
-                           />}/>
+                           render={() => <Profile/>}/>
 
                     <Route path="/dialogs"
                            render={() => <
-                               DialogsContainer store={props.store}
-                           />}/>
+                               DialogsContainer/>}/>
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
