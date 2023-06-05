@@ -21,7 +21,6 @@ type PostsType = {
     likesCount: number
 }
 const Profile = () => {
-
     return (
         <div>
             <ProfileInfo/>
