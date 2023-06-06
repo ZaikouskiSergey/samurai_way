@@ -1,4 +1,4 @@
-import React from 'react';
+
 import {DialogType, MessageType} from "./store";
 
 const UPDATE_NEW_MESSAGE_BODY = "UPDATE-NEW-MESSAGE-BODY";
@@ -28,7 +28,7 @@ const initialState = {
     newMessageBody: ""
 }
 
-export const dialogsReducer = (state: DialogInitialStateType = initialState, action:UpdateNewMessageBodyCreatorType): DialogInitialStateType => {
+export const dialogsReducer = (state: DialogInitialStateType = initialState, action:ActionsDialogsType): DialogInitialStateType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.payload.body
@@ -47,10 +47,10 @@ type SendMessageCreatorType = ReturnType<typeof sendMessageCreator>
 type UpdateNewMessageBodyCreatorType = ReturnType<typeof updateNewMessageBodyCreator>
 
 
-export const sendMessageCreator = () => ({type: SEND_MESSAGE})
+export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
 export const updateNewMessageBodyCreator = (body: string) => {
     return {
         type: UPDATE_NEW_MESSAGE_BODY,
         payload:{body}
-    }
+    } as const
 }

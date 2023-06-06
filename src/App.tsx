@@ -27,7 +27,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 //     dispatch: (action: any) => void
 //     store: any
 // }
-type MessageType = {
+/*type MessageType = {
     message: string,
     id?: number
 }
@@ -39,7 +39,7 @@ type PostsType = {
     id?: number,
     message: string,
     likesCount: number
-}
+}*/
 const App = () => {
     return (
         <Router>
