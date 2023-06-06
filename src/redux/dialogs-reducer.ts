@@ -31,13 +31,13 @@ const initialState = {
 export const dialogsReducer = (state: DialogInitialStateType = initialState, action:ActionsDialogsType): DialogInitialStateType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
-            state.newMessageBody = action.payload.body
-            return state;
+            //state.newMessageBody = action.payload.body
+            return {...state, newMessageBody: action.payload.body};
         case SEND_MESSAGE:
             let body = state.newMessageBody
-            state.newMessageBody = '';
-            state.messages.push({id: 5, message: body})
-            return state;
+            // state.newMessageBody = '';
+            // state.messages.push({id: 5, message: body})
+            return {...state, messages: [...state.messages, {id: 5, message: body}], newMessageBody: ''};
         default:
             return state
     }
@@ -51,6 +51,6 @@ export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
 export const updateNewMessageBodyCreator = (body: string) => {
     return {
         type: UPDATE_NEW_MESSAGE_BODY,
-        payload:{body}
+        payload:{body:body}
     } as const
 }

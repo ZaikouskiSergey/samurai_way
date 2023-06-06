@@ -6,20 +6,20 @@ import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {StoreType} from "../../redux/store";
 
-type ProfilePropsType = {
-    store: StoreType
-
-    /* state: {
-         posts: Array<PostsType>
-         newPostText: string
-     },
-     dispatch: (action: any) => void*/
-}
-type PostsType = {
-    id?: number,
-    message: string,
-    likesCount: number
-}
+// type ProfilePropsType = {
+//     store: StoreType
+//
+//     /* state: {
+//          posts: Array<PostsType>
+//          newPostText: string
+//      },
+//      dispatch: (action: any) => void*/
+// }
+// type PostsType = {
+//     id?: number,
+//     message: string,
+//     likesCount: number
+// }
 const Profile = () => {
     return (
         <div>

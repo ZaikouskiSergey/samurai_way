@@ -3,12 +3,10 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messege/Message";
 
-
-
 type DialogsPropsType = {
     updateNewMessageBody: (body: string) => void
     sendMessage: () => void
-    state: {
+    dialogsPage: {
         dialogs: Array<DialogType>,
         messages: Array<MessageType>,
         newMessageBody: string
@@ -31,13 +29,13 @@ type MessageType = {
 }
 
 const Dialogs = (props: DialogsPropsType) => {
-    let state = props.state;
+    let state = props.dialogsPage;
 
     let dialogsElements = state.dialogs.map(dialog => (
-        <DialogItem name={dialog.name} id={dialog.id}/>))
+        <DialogItem key={dialog.id} name={dialog.name} id={dialog.id}/>))
 
     let messagesElements = state.messages.map(message => (
-        <Message message={message.message}/>
+        <Message key={message.id} message={message.message}/>
     ))
 
     let newMessageBody = state.newMessageBody
