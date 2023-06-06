@@ -4,42 +4,15 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 
-import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {BrowserRouter as Router, Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
+import UsersContainer from "./components/Users/UsersContainer";
 
-// type AppPropsType = {
-//     state: {
-//         profilePage: {
-//             posts: Array<PostsType>
-//             newPostText: string
-//         },
-//         dialogsPage: {
-//             dialogs: Array<DialogType>,
-//             messages: Array<MessageType>,
-//             newMessageBody: string
-//         }
-//     },
-//     dispatch: (action: any) => void
-//     store: any
-// }
-/*type MessageType = {
-    message: string,
-    id?: number
-}
-type DialogType = {
-    name: string,
-    id: string | number
-}
-type PostsType = {
-    id?: number,
-    message: string,
-    likesCount: number
-}*/
 const App = () => {
     return (
         <Router>
@@ -56,6 +29,8 @@ const App = () => {
                     <Route path="/news" render={() => <News/>}/>
                     <Route path="/music" render={() => <Music/>}/>
                     <Route path="/settings" render={() => <Settings/>}/>
+
+                    <Route path="/users" render={() => <UsersContainer/>}/>
 
                 </div>
             </div>
