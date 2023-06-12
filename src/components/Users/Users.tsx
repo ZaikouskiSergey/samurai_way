@@ -15,7 +15,7 @@ const Users: React.FC<UsersPropsType> = ({users, follow, unFollow, setUsers}) =>
             [
                 {
                     id: 1,
-                    photoUrl: 'https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_neytiri_16x9_1098_01_0e7d844a.jpeg?region=240%2C0%2C1440%2C1080',
+                    photoUrl: 'https://img.lovepik.com/element/40128/7461.png_1200.png',
                     followed: false,
                     fullName: "Dmitry",
                     status: 'I am Belarusian',
@@ -23,7 +23,7 @@ const Users: React.FC<UsersPropsType> = ({users, follow, unFollow, setUsers}) =>
                 },
                 {
                     id: 2,
-                    photoUrl: 'https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_neytiri_16x9_1098_01_0e7d844a.jpeg?region=240%2C0%2C1440%2C1080',
+                    photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjalMHZtOx9E1-R8UPY0O8TJTjnt5yGWVUQl5cBajLNbb_4cP4grpYikWYOIna05-ksgU&usqp=CAU',
                     followed: false,
                     fullName: "Vanya",
                     status: 'I am Russian',
@@ -31,7 +31,7 @@ const Users: React.FC<UsersPropsType> = ({users, follow, unFollow, setUsers}) =>
                 },
                 {
                     id: 3,
-                    photoUrl: 'https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_neytiri_16x9_1098_01_0e7d844a.jpeg?region=240%2C0%2C1440%2C1080',
+                    photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-_cyYC_5sdRL1ME2r7XRjGVeES9UnSLtQjQ4VbM7yizsUiRCckgvBn78EkrhXZFRcfCk&usqp=CAU',
                     followed: false,
                     fullName: "Andrew",
                     status: 'I am Ukrainian',
@@ -39,7 +39,7 @@ const Users: React.FC<UsersPropsType> = ({users, follow, unFollow, setUsers}) =>
                 },
                 {
                     id: 4,
-                    photoUrl: 'https://lumiere-a.akamaihd.net/v1/images/a_avatarpandorapedia_neytiri_16x9_1098_01_0e7d844a.jpeg?region=240%2C0%2C1440%2C1080',
+                    photoUrl: 'https://png.pngtree.com/element_our/20190528/ourlarge/pngtree-520-boy-avatar-image_1153284.jpg',
                     followed: false,
                     fullName: "John",
                     status: 'I am American',
