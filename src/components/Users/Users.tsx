@@ -1,6 +1,8 @@
 import React from 'react';
 import styles from './users.module.css';
 import {UserType} from "../../redux/users-reducer";
+import axios from "axios";
+import AvatarPhoto from '../../assets/images/Avatarki.jpg'
 
 type UsersPropsType = {
     users: UserType[]
@@ -11,41 +13,11 @@ type UsersPropsType = {
 }
 const Users: React.FC<UsersPropsType> = ({users, follow, unFollow, setUsers}) => {
     if (users.length === 0 ) {
-        setUsers(
-            [
-                {
-                    id: 1,
-                    photoUrl: 'https://img.lovepik.com/element/40128/7461.png_1200.png',
-                    followed: false,
-                    fullName: "Dmitry",
-                    status: 'I am Belarusian',
-                    location: {city: 'Minsk', country: 'Belarus'}
-                },
-                {
-                    id: 2,
-                    photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRjalMHZtOx9E1-R8UPY0O8TJTjnt5yGWVUQl5cBajLNbb_4cP4grpYikWYOIna05-ksgU&usqp=CAU',
-                    followed: false,
-                    fullName: "Vanya",
-                    status: 'I am Russian',
-                    location: {city: 'Moscow', country: 'Russia'}
-                },
-                {
-                    id: 3,
-                    photoUrl: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-_cyYC_5sdRL1ME2r7XRjGVeES9UnSLtQjQ4VbM7yizsUiRCckgvBn78EkrhXZFRcfCk&usqp=CAU',
-                    followed: false,
-                    fullName: "Andrew",
-                    status: 'I am Ukrainian',
-                    location: {city: 'Kiev', country: 'Ukraine'}
-                },
-                {
-                    id: 4,
-                    photoUrl: 'https://png.pngtree.com/element_our/20190528/ourlarge/pngtree-520-boy-avatar-image_1153284.jpg',
-                    followed: false,
-                    fullName: "John",
-                    status: 'I am American',
-                    location: {city: 'Calgary', country: 'USA'}
-                },
-            ])
+        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+            .then(response=>{
+                setUsers(response.data.items)
+
+        })
     }
 
     return (
@@ -56,7 +28,10 @@ const Users: React.FC<UsersPropsType> = ({users, follow, unFollow, setUsers}) =>
                         <div key={u.id}>
                             <span>
                                 <div>
-                                    <img src={u.photoUrl} className={styles.userPhoto}/>
+                                    <img
+                                        alt={'avatar'}
+                                        src={u.photos.small !==null ? u.photos.small : AvatarPhoto}
+                                        className={styles.userPhoto}/>
                                 </div>
                                 <div>
                                     {u.followed
@@ -67,13 +42,13 @@ const Users: React.FC<UsersPropsType> = ({users, follow, unFollow, setUsers}) =>
                             </span>
                             <span>
                                 <span>
-                                    <div>{u.fullName}</div>
+                                    <div>{u.name}</div>
                                     <div>{u.status}</div>
 
                                 </span>
                                 <span>
-                                    <div>{u.location.country}</div>
-                                    <div>{u.location.city}</div>
+                                    <div>{"u.location.country"}</div>
+                                    <div>{"u.location.city"}</div>
                                 </span>
                             </span>
                         </div>)

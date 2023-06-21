@@ -3,34 +3,38 @@ export type InitialStateUsersType = {
 }
 
 export type UserType = {
+    name: string
     id: number
-    photoUrl: string
-    followed: boolean
-    fullName: string
-    status: string
-    location: {
-        city: string
-        country: string
+    photos: {
+        small: null | string
+        large: null | string
     }
+    status: null | string
+    followed: boolean
 }
 
+
 const initialState = {
-    users: [   ]
+    users: []
 }
-export const usersReducer = (state:InitialStateUsersType = initialState, action: ActionsUsersType) => {
+export const usersReducer = (state: InitialStateUsersType = initialState, action: ActionsUsersType) => {
     switch (action.type) {
         case "FOLLOW":
-            return {...state,
+            return {
+                ...state,
                 users: state.users
                     .map(u => u.id === action.userId
                         ? {...u, followed: true}
-                        : u)}
+                        : u)
+            }
         case "UNFOLLOW" :
-            return {...state,
+            return {
+                ...state,
                 users: state.users
                     .map(u => u.id === action.userId
                         ? {...u, followed: false}
-                        : u)}
+                        : u)
+            }
         case "SET-USERS":
             return {...state, users: [...state.users, ...action.users]}
         default:
@@ -55,7 +59,7 @@ export const unFollowAC = (userId: number) => {
     } as const
 }
 
-export const setUsersAC =(users:UserType[]) => {
+export const setUsersAC = (users: UserType[]) => {
     return {
         type: "SET-USERS",
         users
