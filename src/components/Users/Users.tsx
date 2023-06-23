@@ -4,26 +4,28 @@ import {UserType} from "../../redux/users-reducer";
 import axios from "axios";
 import AvatarPhoto from '../../assets/images/Avatarki.jpg'
 
-
-class Users extends React.Component<any, any> {
-    constructor(props:any) {
+type UserResponseType={
+    items: UserType[]
+    totalCount: number
+    error: string|null
+}
+type UsersProps = {
+    users: UserType[];
+    setUsers: (users: UserType[]) => void;
+    follow: (userId: number) => void;
+    unFollow: (userId: number) => void;
+}
+class Users extends React.Component<UsersProps, any> {
+    constructor(props:UsersProps) {
         super(props);
-        axios.get('https://social-network.samuraijs.com/api/1.0/users')
+    }
+    componentDidMount() {
+        axios.get<UserResponseType>('https://social-network.samuraijs.com/api/1.0/users')
             .then(response => {
                 this.props.setUsers(response.data.items)
-
             })
     }
 
- /*   getUsers = () => {
-        if (this.props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users')
-                .then(response => {
-                    this.props.setUsers(response.data.items)
-                })
-        }
-    }
-*/
     render() {
         return (
             <div>
