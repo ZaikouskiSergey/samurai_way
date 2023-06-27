@@ -19,10 +19,14 @@ const Users: React.FC<UsersProps> =(props)=> {
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
+
+    let pagesShow = props.currentPage> 10
+        ? pages.slice(props.currentPage-5, props.currentPage+10)
+        : pages.slice(0, 11)
         return (
             <div>
                 <div className={styles.users_pages}> page...
-                    {pages.map(p => {
+                    {pagesShow.map(p => {
                         return <span className={props.currentPage === p ? styles.selectedPage : ''}
                                      onClick={(e) => props.onPageChanged(p)}>{p}</span>
                     })}

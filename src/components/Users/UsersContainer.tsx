@@ -11,6 +11,7 @@ import {
 
 import axios from "axios";
 import Users from "./Users";
+import preloader from '../../assets/images/preloader1.svg'
 
 type UserResponseType = {
     items: UserType[]
@@ -22,6 +23,7 @@ type UsersAPIProps = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
     setUsers: (users: UserType[]) => void
     follow: (userId: number) => void
     unFollow: (userId: number) => void
@@ -46,15 +48,19 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
             })
     }
     render() {
-        return <Users
-            users={this.props.users}
-            pageSize={this.props.pageSize}
-            totalUsersCount={this.props.totalUsersCount}
-            currentPage={this.props.currentPage}
-            follow={this.props.follow}
-            unFollow={this.props.unFollow}
-            onPageChanged={this.onPageChanged}
-        />
+        return <>
+            {this.props.isFetching && <img src={preloader} alt={'...loading'}/>}
+            <Users
+                users={this.props.users}
+                pageSize={this.props.pageSize}
+                totalUsersCount={this.props.totalUsersCount}
+                currentPage={this.props.currentPage}
+                follow={this.props.follow}
+                unFollow={this.props.unFollow}
+                onPageChanged={this.onPageChanged}
+
+            />
+        </>
     }
 }
 const mapStateToProps = (state: any) => {
@@ -62,7 +68,8 @@ const mapStateToProps = (state: any) => {
         users: state.usersPage.users,
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
-        currentPage: state.usersPage.currentPage
+        currentPage: state.usersPage.currentPage,
+        isFetching: state.usersPage.isFetching
     }
 }
 const mapDispatchToProps = (dispatch:any) => {
