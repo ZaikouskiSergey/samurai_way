@@ -1,7 +1,17 @@
 .descriptionBlock{
     padding: 10px;
+
 }
 .picture img{
-    width: 300px;
+    width: 400px;
     height: auto;
+}
+.descriptionBlock img{
+    width: 100px;
+    height: auto;
+    border-radius: 50%;
+
+}
+h3 {
+    margin:0
 }
