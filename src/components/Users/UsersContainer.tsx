@@ -1,17 +1,16 @@
 import React from 'react';
 import {connect} from "react-redux";
 import {
-    followAC,
-    setCurrentPageAC,
-    setTotalUsersCountAC,
-    setUsersAC, toggleIsFetchingAC,
-    unFollowAC,
+    follow,
+    setCurrentPage,
+    setTotalUsersCount,
+    setUsers, toggleIsFetching,
+    unFollow,
     UserType
 } from "../../redux/users-reducer";
 
 import axios from "axios";
 import Users from "./Users";
-import preloader from '../../assets/images/preloader1.svg'
 import {Preloader} from "../common/Preloader/Preloader";
 
 type UserResponseType = {
@@ -82,7 +81,7 @@ const mapStateToProps = (state: any) => {
         isFetching: state.usersPage.isFetching
     }
 }
-const mapDispatchToProps = (dispatch: any) => {
+/*const mapDispatchToProps = (dispatch: any) => {
     return {
         follow: (userId: number) => {
             dispatch(followAC(userId))
@@ -105,5 +104,13 @@ const mapDispatchToProps = (dispatch: any) => {
 
 
     }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer)
+}*/
+export default connect(mapStateToProps,  {
+    follow,
+    unFollow,
+    setUsers,
+    setCurrentPage,
+    setTotalUsersCount,
+    toggleIsFetching
+    }
+    )(UsersContainer)
