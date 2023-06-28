@@ -1,5 +1,6 @@
 import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
+import {ProfileAPIProps} from "../components/Profile/ProfileContainer";
 
 export type StoreType = {
     _state: stateType
@@ -12,6 +13,8 @@ export type stateType = {
     profilePage: {
         posts: Array<PostsType>
         newPostText: string
+        profile: ProfileAPIProps | null
+
     },
     dialogsPage: {
         dialogs: Array<DialogType>,
@@ -40,7 +43,8 @@ let store: StoreType = {
                 {id: 2, message: "It's my first post", likesCount: 20},
                 {id: 3, message: "Blabla", likesCount: 2}
             ],
-            newPostText: 'it-kamasutra.com'
+            newPostText: 'it-kamasutra.com',
+            profile: null
         },
         dialogsPage: {
             messages: [

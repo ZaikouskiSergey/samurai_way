@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './users.module.css';
 import {UserType} from "../../redux/users-reducer";
 import AvatarPhoto from '../../assets/images/Avatarki.jpg'
+import {NavLink} from "react-router-dom";
 
 type UsersProps = {
     users: UserType[]
@@ -13,36 +14,38 @@ type UsersProps = {
     onPageChanged: (p: number) => void
 }
 
-const Users: React.FC<UsersProps> =(props)=> {
+const Users: React.FC<UsersProps> = (props) => {
     let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
 
-    let pagesShow = props.currentPage> 10
-        ? pages.slice(props.currentPage-5, props.currentPage+10)
+    let pagesShow = props.currentPage > 10
+        ? pages.slice(props.currentPage - 5, props.currentPage + 10)
         : pages.slice(0, 11)
-        return (
-            <div>
-                <div className={styles.users_pages}> page...
-                    {pagesShow.map(p => {
-                        return <span className={props.currentPage === p ? styles.selectedPage : ''}
-                                     onClick={(e) => props.onPageChanged(p)}>{p}</span>
-                    })}
-                    ...
-                </div>
+    return (
+        <div>
+            <div className={styles.users_pages}> page...
+                {pagesShow.map(p => {
+                    return <span className={props.currentPage === p ? styles.selectedPage : ''}
+                                 onClick={(e) => props.onPageChanged(p)}>{p}</span>
+                })}
+                ...
+            </div>
 
-                {
-                    props.users.map(u => {
-                        return (
-                            <div key={u.id}>
+            {
+                props.users.map(u => {
+                    return (
+                        <div key={u.id}>
                             <span>
                                 <div>
+                                    <NavLink to={'/profile/' + u.id}>
                                     <img
                                         alt={'avatar'}
                                         src={u.photos.small !== null ? u.photos.small : AvatarPhoto}
                                         className={styles.userPhoto}/>
+                                    </NavLink>
                                 </div>
                                 <div>
                                     {u.followed
@@ -51,7 +54,7 @@ const Users: React.FC<UsersProps> =(props)=> {
                                     }
                                 </div>
                             </span>
-                                <span>
+                            <span>
                                 <span>
                                     <div>{u.name}</div>
                                     <div>{u.status}</div>
@@ -62,11 +65,11 @@ const Users: React.FC<UsersProps> =(props)=> {
                                     <div>{"u.location.city"}</div>
                                 </span>
                             </span>
-                            </div>)
-                    })
-                }
-            </div>
-        )
+                        </div>)
+                })
+            }
+        </div>
+    )
 }
 
 export default Users;

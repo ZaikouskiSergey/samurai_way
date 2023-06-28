@@ -2,11 +2,16 @@ import React from "react";
 
 import ProfileInfo from "./MyPosts/ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
+import {ProfileAPIProps} from "./ProfileContainer";
 
-const Profile = () => {
+export type ProfilePropsType = {
+    profile: ProfileAPIProps
+
+}
+const Profile: React.FC<ProfilePropsType> = ({profile}) => {
     return (
         <div>
-            <ProfileInfo/>
+            <ProfileInfo profile={profile}/>
             <MyPostsContainer/>
         </div>
     )
