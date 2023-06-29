@@ -111,6 +111,5 @@ export default connect(mapStateToProps,  {
     setUsers,
     setCurrentPage,
     setTotalUsersCount,
-    toggleIsFetching
-    }
+    toggleIsFetching}
     )(UsersContainer)
