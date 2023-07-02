@@ -4,6 +4,7 @@ import {dialogsReducer} from "./dialogs-reducer";
 import {DialogType, MessageType, PostsType} from "./store";
 import {usersReducer} from "./users-reducer";
 import {ProfileAPIProps} from "../components/Profile/ProfileContainer";
+import {authReducer} from "./auth-reducer";
 
 export type stateType = {
     profilePage: {
@@ -21,7 +22,8 @@ export type stateType = {
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
-    usersPage: usersReducer
+    usersPage: usersReducer,
+    auth: authReducer
 })
 let store = createStore(reducers);
 
