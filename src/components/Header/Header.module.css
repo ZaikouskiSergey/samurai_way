@@ -9,6 +9,8 @@
 
 .loginBlock {
     float: right;
+    color: antiquewhite;
+    font-size: 20px;
 }
 
 .loginBlock a {
