@@ -37,7 +37,8 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
 
     componentDidMount() {
         this.props.toggleIsFetching(true)
-        axios.get<UserResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+        axios.get<UserResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`,
+            {withCredentials: true})
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)
@@ -48,7 +49,7 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
     onPageChanged = (currentNumber: number) => {
         this.props.setCurrentPage(currentNumber)
         this.props.toggleIsFetching(true)
-        axios.get<UserResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${currentNumber}&count=${this.props.pageSize}`)
+        axios.get<UserResponseType>(`https://social-network.samuraijs.com/api/1.0/users?page=${currentNumber}&count=${this.props.pageSize}`, {withCredentials: true})
             .then(response => {
                 this.props.toggleIsFetching(false)
                 this.props.setUsers(response.data.items)

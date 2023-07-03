@@ -33,13 +33,11 @@ class HeaderContainer extends React.Component<any, any> {
     }
 
     render() {
-        debugger
         return <Header login={this.props.login} isAuth={this.props.isAuth}/>
     }
 }
 
 const mapStateToProps = (state: any) => {
-    debugger
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login
