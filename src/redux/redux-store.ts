@@ -26,6 +26,7 @@ let reducers = combineReducers({
     auth: authReducer
 })
 let store = createStore(reducers);
+export type RootState = ReturnType<typeof reducers>
 
 //window.store = store;
 

@@ -1,8 +1,9 @@
 import React from "react";
 import Header from "./Header";
 import axios from "axios";
-import {InitialStateAuthType, setAuthUserData} from "../../redux/auth-reducer";
+import {setAuthUserData} from "../../redux/auth-reducer";
 import {connect} from "react-redux";
+import {RootState} from "../../redux/redux-store";
 
 type AuthResponseType = {
     data: {
@@ -37,7 +38,7 @@ class HeaderContainer extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login
