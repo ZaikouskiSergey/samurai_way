@@ -3,7 +3,7 @@ import {connect} from "react-redux";
 import {
     followTC, getUsersTC,
     setCurrentPage,
-    unFollow, unFollowTC,
+    unFollowTC,
     UserType
 } from "../../redux/users-reducer";
 import Users from "./Users";
@@ -23,9 +23,9 @@ type UsersAPIProps = {
     followingInProgress: Array<number>
     getUsersTC: (currentPage: number, pageSize: number) => void
     followTC: (userId: number) => void
-    unFollow: (userId: number) => void
+    unFollowTC: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
-    toggleFollowingProgress: (followingInProgress: boolean, userId: number) => void
+
 }
 
 class UsersContainer extends React.Component<UsersAPIProps, any> {
@@ -47,7 +47,7 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
                 totalUsersCount={this.props.totalUsersCount}
                 currentPage={this.props.currentPage}
                 followTC={this.props.followTC}
-                unFollow={this.props.unFollow}
+                unFollowTC={this.props.unFollowTC}
                 onPageChanged={this.onPageChanged}
                 followingInProgress={this.props.followingInProgress}
 
