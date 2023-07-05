@@ -6,6 +6,13 @@ type UserResponseType = {
     totalCount: number
     error: string | null
 }
+type FollowUserResponseType = {
+    resultCode: number
+    messages: Array<string>
+    data: {}
+    fieldsErrors: Array<string>
+
+}
 
 const instance = axios.create({
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
@@ -20,5 +27,12 @@ export const usersAPI = {
             .then(response => {
                 return response.data
             })
+    },
+    follow(userId:number){
+        return instance.post<FollowUserResponseType>(`follow/${userId}`)
+    },
+    unfollow(userId:number){
+        return instance.delete<FollowUserResponseType>(`follow/${userId}`)
     }
+
 }
