@@ -1,3 +1,6 @@
+import {Dispatch} from "redux";
+import {usersAPI} from "../api/api";
+
 const initialState = {
     users: [],
     pageSize: 10,
@@ -27,7 +30,8 @@ export const usersReducer = (state: InitialStateUsersType = initialState, action
         case "TOGGLE-IS-FETCHING":
             return {...state, isFetching: action.isFetching}
         case "TOGGLE-IS-FOLLOWING-PROGRESS":
-            return { ...state, followingInProgress: action.followingInProgress
+            return {
+                ...state, followingInProgress: action.followingInProgress
                     ? [...state.followingInProgress, action.userId]
                     : state.followingInProgress.filter(id => id !== action.userId)
             }
@@ -45,6 +49,20 @@ export const setTotalUsersCount = (totalCount: number) => ({type: 'SET-TOTAL-USE
 export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE-IS-FETCHING', isFetching} as const)
 export const toggleFollowingProgress = (followingInProgress: boolean, userId: number) =>
     ({type: 'TOGGLE-IS-FOLLOWING-PROGRESS', followingInProgress, userId} as const)
+
+// thunks
+export const getUsersTC = (currentPage:number, pageSize:number) => {
+    return (dispatch: Dispatch) => {
+        dispatch(toggleIsFetching(true))
+        usersAPI.getUsers(currentPage, pageSize)
+            .then(data => {
+                dispatch(toggleIsFetching(false))
+                dispatch(setUsers(data.items))
+                dispatch(setTotalUsersCount(data.totalCount))
+            })
+    }
+}
+
 
 // types
 export type ActionsUsersType =
