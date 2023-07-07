@@ -1,7 +1,8 @@
-import React, {ChangeEvent } from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messege/Message";
+import {Redirect} from "react-router-dom";
 
 type DialogsPropsType = {
     updateNewMessageBody: (body: string) => void
@@ -11,13 +12,7 @@ type DialogsPropsType = {
         messages: Array<MessageType>,
         newMessageBody: string
     }
-    /*store: StoreType*/
-    /* state: {
-         dialogs: Array<DialogType>,
-         messages: Array<MessageType>,
-         newMessageBody: string
-     },
-     dispatch: (action: any) => void*/
+    isAuth: boolean
 }
 type DialogType = {
     name: string,
@@ -48,6 +43,7 @@ const Dialogs = (props: DialogsPropsType) => {
     const addNewMessage = () => {
         props.sendMessage()
     }
+    if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={s.dialogs}>
