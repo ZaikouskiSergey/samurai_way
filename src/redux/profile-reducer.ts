@@ -43,9 +43,15 @@ export type ActionsProfileType = UpdateNewPostTextActionCreator | AddPostActionC
 type AddPostActionCreator = ReturnType<typeof addPostActionCreator>
 type UpdateNewPostTextActionCreator = ReturnType<typeof updateNewPostTextActionCreator>
 type SetUserProfile = ReturnType<typeof setUserProfile>
+
+//actions
 export const addPostActionCreator = () => ({type: ADD_POST} as const)
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: UPDATE_NEW_POST_TEXT, newText: text} as const)
-
 export const setUserProfile = (profile: ProfileAPIProps) =>
     ({type: 'SET-USER-PROFILE', profile} as const)
+
+//thunks
+
+
+

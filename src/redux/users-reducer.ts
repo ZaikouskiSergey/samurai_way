@@ -88,11 +88,6 @@ export const unFollowTC=(userId:number)=>{
     }
 }
 
-
-
-
-
-
 // types
 export type ActionsUsersType =
     | ReturnType<typeof followSuccess>
