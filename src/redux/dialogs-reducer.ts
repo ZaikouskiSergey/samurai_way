@@ -42,15 +42,10 @@ export const dialogsReducer = (state: DialogInitialStateType = initialState, act
             return state
     }
 }
+//actions
+export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
+export const updateNewMessageBodyCreator = (body: string) => ({type: UPDATE_NEW_MESSAGE_BODY,payload:{body:body}} as const)
+//types
 export type ActionsDialogsType = SendMessageCreatorType | UpdateNewMessageBodyCreatorType
 type SendMessageCreatorType = ReturnType<typeof sendMessageCreator>
 type UpdateNewMessageBodyCreatorType = ReturnType<typeof updateNewMessageBodyCreator>
-
-
-export const sendMessageCreator = () => ({type: SEND_MESSAGE} as const)
-export const updateNewMessageBodyCreator = (body: string) => {
-    return {
-        type: UPDATE_NEW_MESSAGE_BODY,
-        payload:{body:body}
-    } as const
-}

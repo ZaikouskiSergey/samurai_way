@@ -6,12 +6,6 @@ import {usersAPI} from "../api/api";
 const ADD_POST = "ADD-POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
-type ProfileInitialStateType = {
-    posts: Array<PostsType>
-    newPostText: string
-    profile: ProfileAPIProps | null
-}
-
 const initialState = {
     posts: [
         {id: 1, message: 'Hi, how are you?', likesCount: 15},
@@ -21,7 +15,6 @@ const initialState = {
     newPostText: 'it-kamasutra.com',
     profile: null
 }
-
 export const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionsProfileType) => {
     switch (action.type) {
         case ADD_POST:
@@ -60,6 +53,13 @@ export const getUserProfile=(userId:number)=>(dispatch:Dispatch)=>{
         .then(response => {
             dispatch(setUserProfile(response.data))
         })
+}
+
+// types
+type ProfileInitialStateType = {
+    posts: Array<PostsType>
+    newPostText: string
+    profile: ProfileAPIProps | null
 }
 
 
