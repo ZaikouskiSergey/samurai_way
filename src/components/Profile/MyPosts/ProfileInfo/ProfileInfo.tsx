@@ -2,6 +2,7 @@ import React from "react";
 import s from './ProfileInfo.module.css';
 import {ProfileAPIProps} from "../../ProfileContainer";
 import {Preloader} from "../../../common/Preloader/Preloader";
+import ProfileStatus from './ProfileStatus'
 
 export type ProfileInfoPropsType ={
     profile: ProfileAPIProps
@@ -22,6 +23,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
                     src={profile.photos.large? profile.photos.large : `https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg`}
                     alt={'ava'}
                 />
+                <ProfileStatus status={'hello world!'}/>
                 <h3>{profile.fullName}</h3>
                 <p>{profile.aboutMe}</p>
 
