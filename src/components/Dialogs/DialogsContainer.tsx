@@ -4,8 +4,7 @@ import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {RootState} from "../../redux/redux-store";
 import {Dispatch} from "redux";
-import {Redirect} from "react-router-dom";
-import WithAuthRedirect from "../../hoc/WithAuthRedirect";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 let mapStateToProps = (state: RootState) => {
     return {
