@@ -8,6 +8,7 @@ import {
 } from "../../redux/users-reducer";
 import Users from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
+import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 type UserResponseType = {
     items: UserType[]
@@ -66,6 +67,8 @@ const mapStateToProps = (state: any) => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
+
+let withRedirect = WithAuthRedirect(UsersContainer)
 export default connect(mapStateToProps, {
         followTC,
         unFollowTC,
@@ -73,4 +76,4 @@ export default connect(mapStateToProps, {
         setCurrentPage,
 
     }
-)(UsersContainer)
+)(withRedirect)
