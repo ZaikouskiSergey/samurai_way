@@ -3,7 +3,7 @@ import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialo
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {RootState} from "../../redux/redux-store";
-import {Dispatch} from "redux";
+import {compose, Dispatch} from "redux";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 
 let mapStateToProps = (state: RootState) => {
@@ -21,7 +21,11 @@ let mapDispatchToProps = (dispatch: Dispatch) => {
         }
     }
 }
-let AuthRedirectComponent = WithAuthRedirect(Dialogs)
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
-export default DialogsContainer;
+
+//let AuthRedirectComponent = WithAuthRedirect(Dialogs)
+//const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent);
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    WithAuthRedirect
+)(Dialogs);

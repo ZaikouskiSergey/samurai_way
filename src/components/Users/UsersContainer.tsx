@@ -9,6 +9,7 @@ import {
 import Users from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {compose} from "redux";
 
 type UserResponseType = {
     items: UserType[]
@@ -67,13 +68,7 @@ const mapStateToProps = (state: any) => {
         followingInProgress: state.usersPage.followingInProgress
     }
 }
-
-let withRedirect = WithAuthRedirect(UsersContainer)
-export default connect(mapStateToProps, {
-        followTC,
-        unFollowTC,
-        getUsersTC,
-        setCurrentPage,
-
-    }
-)(withRedirect)
+export default compose(
+    WithAuthRedirect,
+    connect(mapStateToProps, {followTC, unFollowTC, getUsersTC, setCurrentPage})
+)(UsersContainer)
