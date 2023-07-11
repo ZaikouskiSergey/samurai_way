@@ -24,8 +24,10 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
                     src={profile.photos.large? profile.photos.large : `https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg`}
                     alt={'ava'}
                 />
-                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+
                 <h3>{profile.fullName}</h3>
+                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+
                 <p>{profile.aboutMe}</p>
 
             </div>
