@@ -36,10 +36,22 @@ export const usersAPI = {
         return instance.delete<FollowUserResponseType>(`follow/${userId}`)
     },
     getProfile(userId:number){
-        return instance.get<ProfileAPIProps>(`profile/${userId}`)
+        console.warn('Obsolete method. Please use profileAPI object')
+        return profileAPI.getProfile(userId)
     }
 }
 
+export const profileAPI = {
+    getProfile(userId:number){
+        return instance.get<ProfileAPIProps>(`profile/${userId}`)
+    },
+    getStatus(userId:number){
+        return instance.get(`profile/status/${userId}`)
+    },
+    updateStatus(newStatus:string){
+        return instance.put(`profile/status`, {status: newStatus})
+    }
+}
 export const AuthAPI={
     me(){
         return instance.get<AuthResponseType>(`auth/me`)}

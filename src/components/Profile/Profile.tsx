@@ -6,12 +6,14 @@ import {ProfileAPIProps} from "./ProfileContainer";
 
 export type ProfilePropsType = {
     profile: ProfileAPIProps
+    status: string
+    updateUserStatus: (status: string) => void
 
 }
-const Profile: React.FC<ProfilePropsType> = ({profile}) => {
+const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus}) => {
     return (
         <div>
-            <ProfileInfo profile={profile}/>
+            <ProfileInfo profile={profile} status={status} updateUserStatus={updateUserStatus}/>
             <MyPostsContainer/>
         </div>
     )

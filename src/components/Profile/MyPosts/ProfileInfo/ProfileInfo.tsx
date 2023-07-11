@@ -6,10 +6,11 @@ import ProfileStatus from './ProfileStatus'
 
 export type ProfileInfoPropsType ={
     profile: ProfileAPIProps
-
+    status: string
+    updateUserStatus: (status: string) => void
 }
 
-const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
+const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus}) => {
     if (!profile){
         return <Preloader/>
     }
@@ -23,7 +24,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile}) => {
                     src={profile.photos.large? profile.photos.large : `https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg`}
                     alt={'ava'}
                 />
-                <ProfileStatus status={'hello world!'}/>
+                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
                 <h3>{profile.fullName}</h3>
                 <p>{profile.aboutMe}</p>
 

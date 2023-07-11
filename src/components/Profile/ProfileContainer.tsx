@@ -1,7 +1,7 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile} from "../../redux/profile-reducer";
+import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {RootState} from "../../redux/redux-store";
 import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
@@ -32,9 +32,12 @@ export type ProfileAPIProps = {
 type MapStateToPropsType = {
     profile: ProfileAPIProps | null
     isAuth: boolean
+    status: string
 }
 type MapDispatchPropsType = {
     getUserProfile: (userId: number) => void
+    getUserStatus: (userId: number) => void
+    updateUserStatus: (status: string) => void
 }
 type PropsProfileType = MapStateToPropsType & MapDispatchPropsType
 
@@ -45,27 +48,34 @@ class ProfileContainer extends React.Component<any, any> {
             userId = 2
         }
         this.props.getUserProfile(userId)
+        this.props.getUserStatus(userId)
     }
 
     render() {
         return (
             <div>
-                <Profile {...this.props} profile={this.props.profile}/>
+                <Profile {...this.props}
+                         profile={this.props.profile}
+                         status={this.props.status}
+                         updateUserStatus={this.props.updateUserStatus}
+                />
             </div>
         )
     }
 }
+
 const mapStateToProps = (state: RootState) => ({
-    profile: state.profilePage.profile
+    profile: state.profilePage.profile,
+    status: state.profilePage.status
 })
 
 
 //let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
 //let withUrlDataContainerComponent = withRouter(ProfileContainer)
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile}),
-        withRouter,
-        WithAuthRedirect
-    )(ProfileContainer)
+    connect(mapStateToProps, {getUserProfile, getUserStatus,updateUserStatus}),
+    withRouter,
+    WithAuthRedirect
+)(ProfileContainer)
 
 

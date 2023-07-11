@@ -14,6 +14,7 @@ export type stateType = {
         posts: Array<PostsType>
         newPostText: string
         profile: ProfileAPIProps | null
+        status: string
 
     },
     dialogsPage: {
@@ -44,7 +45,8 @@ let store: StoreType = {
                 {id: 3, message: "Blabla", likesCount: 2}
             ],
             newPostText: 'it-kamasutra.com',
-            profile: null
+            profile: null,
+            status: ''
         },
         dialogsPage: {
             messages: [
