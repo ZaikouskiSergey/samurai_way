@@ -1,16 +1,19 @@
 import React from 'react';
+import {Field, reduxForm} from "redux-form";
+import styles from "./Login.module.css"
 
-export const LoginForm = () => {
+export const LoginForm = (props:any) => {
+
     return (
-        <form>
+        <form onSubmit={props.handleSubmit}>
             <div>
-                <input placeholder={'login'}/>
+                <Field placeholder={'login'} component={"input"} name={"login"}/>
             </div>
             <div>
-                <input placeholder={'password'}/>
+                <Field placeholder={'password'} component={"input"} name={"password"}/>
             </div>
             <div>
-                <input type={"checkbox"}/> remember me
+                <Field component={"input"} type={"checkbox"} name={"remember me"}/> remember me
             </div>
             <div>
                 <button>login</button>
@@ -18,11 +21,17 @@ export const LoginForm = () => {
         </form>
     )
 }
+
+const LoginReduxForm = reduxForm({form: 'login'})(LoginForm)
 export const Login = () => {
+    const onSubmit = (formData:any)=> {
+        console.log(formData)
+    }
+
     return (
-        <div>
+        <div className={styles.formLogin}>
             <h1>Login</h1>
-            <LoginForm/>
+            <LoginReduxForm onSubmit={onSubmit}/>
         </div>
     );
 };
