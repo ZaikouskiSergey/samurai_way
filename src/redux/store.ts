@@ -19,8 +19,8 @@ export type stateType = {
     },
     dialogsPage: {
         dialogs: Array<DialogType>,
-        messages: Array<MessageType>,
-        newMessageBody: string
+        messages: Array<MessageType>
+
     }
 }
 export type MessageType = {
@@ -62,8 +62,8 @@ let store: StoreType = {
                 {id: 4, name: 'Sasha'},
                 {id: 5, name: 'Victor'},
                 {id: 6, name: 'Valera'},
-            ],
-            newMessageBody: ""
+            ]
+
         },
     },
     _callSubscriber(state: stateType) {

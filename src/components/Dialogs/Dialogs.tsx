@@ -6,8 +6,7 @@ import {Redirect} from "react-router-dom";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 
 type DialogsPropsType = {
-    updateNewMessageBody: (body: string) => void
-    sendMessage: () => void
+    sendMessage: (newMessageBody:string) => void
     dialogsPage: {
         dialogs: Array<DialogType>,
         messages: Array<MessageType>,
@@ -35,11 +34,8 @@ const Dialogs = (props: DialogsPropsType) => {
         <Message key={message.id} message={message.message}/>
     ))
 
-    let newMessageBody = state.newMessageBody
-    const onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let body = e.currentTarget.value
-        props.updateNewMessageBody(body)
-    }
+
+
     const addNewMessage = (values:AddMessageFormType) => {
         props.sendMessage(values.newMessageBody)
 
