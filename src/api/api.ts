@@ -55,9 +55,7 @@ export const profileAPI = {
 export const AuthAPI={
     me(){
         return instance.get<AuthResponseType>(`auth/me`)}
-
 }
-
 export type AuthResponseType = {
     data: {
         id: number

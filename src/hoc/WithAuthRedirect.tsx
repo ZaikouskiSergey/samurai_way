@@ -11,6 +11,7 @@ const mapStateToPropsForRedirect = (state: RootState): MapStateToPropsForRedirec
 })
 
 export function WithAuthRedirect<T>(Component: ComponentType<T>) {
+    debugger
     function RedirectComponent(props: MapStateToPropsForRedirectType) {
 
         let {isAuth, ...restProps} = props
@@ -19,8 +20,9 @@ export function WithAuthRedirect<T>(Component: ComponentType<T>) {
         return <Component {...restProps as T}/>
     }
 
-    let ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
+    // let ConnectedAuthRedirectComponent = connect(mapStateToPropsForRedirect)(RedirectComponent)
 
-    return ConnectedAuthRedirectComponent
+    return connect(mapStateToPropsForRedirect)(RedirectComponent)
+
 }
 
