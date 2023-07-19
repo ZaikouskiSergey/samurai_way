@@ -12,7 +12,7 @@ type DialogsPropsType = {
         messages: Array<MessageType>,
         newMessageBody: string
     }
-    isAuth: boolean
+    //isAuth: boolean
 }
 type DialogType = {
     name: string,
@@ -33,16 +33,10 @@ const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = state.messages.map(message => (
         <Message key={message.id} message={message.message}/>
     ))
-
-
-
     const addNewMessage = (values:AddMessageFormType) => {
         props.sendMessage(values.newMessageBody)
 
     }
-
-
-
     // debugger
     // if(!props.isAuth) return <Redirect to={"/login"}/>
 

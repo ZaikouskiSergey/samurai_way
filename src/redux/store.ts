@@ -12,15 +12,12 @@ export type StoreType = {
 export type stateType = {
     profilePage: {
         posts: Array<PostsType>
-        newPostText: string
         profile: ProfileAPIProps | null
         status: string
-
     },
     dialogsPage: {
         dialogs: Array<DialogType>,
         messages: Array<MessageType>
-
     }
 }
 export type MessageType = {
@@ -44,7 +41,6 @@ let store: StoreType = {
                 {id: 2, message: "It's my first post", likesCount: 20},
                 {id: 3, message: "Blabla", likesCount: 2}
             ],
-            newPostText: 'it-kamasutra.com',
             profile: null,
             status: ''
         },
@@ -63,7 +59,6 @@ let store: StoreType = {
                 {id: 5, name: 'Victor'},
                 {id: 6, name: 'Valera'},
             ]
-
         },
     },
     _callSubscriber(state: stateType) {
