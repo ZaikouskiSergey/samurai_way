@@ -36,6 +36,7 @@ const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
 export const Login = () => {
     const onSubmit = (formData:FormDataType)=> {
         console.log(formData)
+
     }
 
     return (

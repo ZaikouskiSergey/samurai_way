@@ -54,13 +54,21 @@ export const profileAPI = {
 }
 export const AuthAPI={
     me(){
-        return instance.get<AuthResponseType>(`auth/me`)}
+        return instance.get<AuthResponseType>(`auth/me`)},
+    login(email:string, password:string, rememberMe: boolean){
+        return instance.post(`auth/login`, {email, password,rememberMe})
+    },
+    logOut(){
+        return instance.delete(`auth/login`)
+    }
 }
+
 export type AuthResponseType = {
     data: {
-        id: number
+        id: number | null
         login: string
         email: string
+
     }
     resultCode: number
     messages: string | Array<string>
