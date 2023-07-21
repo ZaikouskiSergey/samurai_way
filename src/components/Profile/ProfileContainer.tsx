@@ -40,7 +40,6 @@ type MapDispatchPropsType = {
     updateUserStatus: (status: string) => void
 }
 type PropsProfileType = MapStateToPropsType & MapDispatchPropsType
-
 class ProfileContainer extends React.Component<any, any> {
     componentDidMount() {
         let userId = this.props.match.params.userId
@@ -50,7 +49,6 @@ class ProfileContainer extends React.Component<any, any> {
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
     }
-
     render() {
         return (
             <div>
@@ -63,7 +61,6 @@ class ProfileContainer extends React.Component<any, any> {
         )
     }
 }
-
 const mapStateToProps = (state: RootState) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
