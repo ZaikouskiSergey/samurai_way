@@ -1,10 +1,12 @@
 import React from "react";
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
+import {logOutTC} from "../../redux/auth-reducer";
 
 type HeaderPropsType = {
     isAuth: boolean | null
     login: string | null
+    logOutTC: () => void
 
 }
 const Header: React.FC<HeaderPropsType> = (props) => {
@@ -12,7 +14,11 @@ const Header: React.FC<HeaderPropsType> = (props) => {
         <header className={s.header}>
             <img alt={'picture'} src='https://s3-eu-west-1.amazonaws.com/tpd/logos/5be01d787b5e5b0001ebb6bb/0x0.png'/>
             <div className={s.loginBlock}>
-                {props.isAuth ? props.login : <NavLink to={'/login'}>Login</NavLink>}
+                {props.isAuth
+                    ? <div className={s.loginName}>{props.login}
+                        <button onClick={props.logOutTC}>logout</button>
+                    </div>
+                    : <NavLink to={'/login'}>Login</NavLink>}
             </div>
         </header>
     )
