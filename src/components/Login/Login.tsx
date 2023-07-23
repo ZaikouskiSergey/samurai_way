@@ -13,7 +13,7 @@ type FormDataType = {
     password: string
     rememberMe: boolean
 }
-export const LoginForm: React.FC<InjectedFormProps <FormDataType> >= (props) => {
+export const LoginForm: React.FC<InjectedFormProps<FormDataType>> = (props) => {
     return (
         <form onSubmit={props.handleSubmit}>
             <div>
@@ -24,11 +24,12 @@ export const LoginForm: React.FC<InjectedFormProps <FormDataType> >= (props) => 
             </div>
             <div>
                 <Field placeholder={'password'}
-                       validate = {[requiredField]} component={Input} name={"password"} type={"password"}/>
+                       validate={[requiredField]} component={Input} name={"password"} type={"password"}/>
             </div>
             <div>
                 <Field component={Input} type={"checkbox"} name={"rememberMe"}/> remember me
             </div>
+            {props.error && <div className={styles.formSummaryError}> {props.error}</div>}
             <div>
                 <button>login</button>
             </div>
@@ -37,13 +38,13 @@ export const LoginForm: React.FC<InjectedFormProps <FormDataType> >= (props) => 
 }
 
 const LoginReduxForm = reduxForm<FormDataType>({form: 'login'})(LoginForm)
-const Login = (props:any) => {
-    const onSubmit = (formData:FormDataType)=> {
+const Login = (props: any) => {
+    const onSubmit = (formData: FormDataType) => {
         const {email, password, rememberMe} = formData
         props.loginTC(email, password, rememberMe)
 
     }
-    if(props.isAuth){
+    if (props.isAuth) {
         return <Redirect to={'/profile'}/>
     }
 
@@ -54,9 +55,9 @@ const Login = (props:any) => {
         </div>
     );
 };
-const mapStateToProps=(state: RootState)=>{
+const mapStateToProps = (state: RootState) => {
     return {
         isAuth: state.auth.isAuth
     }
 }
-export default connect (mapStateToProps, {loginTC})(Login);
+export default connect(mapStateToProps, {loginTC})(Login);
