@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import Navbar from "./components/Navbar/Navbar";
-import {BrowserRouter as Router, Route} from "react-router-dom";
+import {BrowserRouter as Router, Route, withRouter} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
@@ -10,11 +10,20 @@ import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
 import LoginPage from "./components/Login/Login";
+import {connect} from "react-redux";
+import {getAuthUserData} from './redux/auth-reducer';
+import {compose} from "redux";
 
-class App extends React.Component {
+
+type AppContainerPropsType = {
+    getAuthUserData: () => void
+}
+class App extends React.Component<AppContainerPropsType> {
+    componentDidMount() {
+        this.props.getAuthUserData()
+    }
     render() {
         return (
-            <Router>
                 <div className='app-wrapper'>
                     <HeaderContainer/>
                     <Navbar/>
@@ -33,8 +42,15 @@ class App extends React.Component {
 
                     </div>
                 </div>
-            </Router>);
+           );
     }
 }
 
-export default App;
+// //export default compose(
+//     withRouter,
+//     connect(null, {getAuthUserData})(App));
+
+export default compose<React.ComponentType>(
+    connect(null, {getAuthUserData}),
+    withRouter,
+)(App)
