@@ -69,6 +69,5 @@ const mapStateToProps = (state: any) => {
     }
 }
 export default compose<ComponentType>(
-    WithAuthRedirect,
     connect(mapStateToProps, {followTC, unFollowTC, getUsersTC, setCurrentPage})
 )(UsersContainer)

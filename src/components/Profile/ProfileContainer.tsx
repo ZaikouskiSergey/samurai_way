@@ -1,12 +1,11 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile, getUserStatus, updateUserStatus} from "../../redux/profile-reducer";
+import {getUserProfile, getUserStatus, updateUserStatus} from "redux/profile-reducer";
 import {withRouter} from "react-router-dom";
-import {RootState} from "../../redux/redux-store";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
+import {RootState} from "redux/redux-store";
+import {WithAuthRedirect} from "hoc/WithAuthRedirect";
 import {compose} from "redux";
-
 
 export type ProfileAPIProps = {
     aboutMe: string | null
@@ -46,6 +45,9 @@ class ProfileContainer extends React.Component<any, any> {
         let userId = this.props.match.params.userId
         if (!userId) {
             userId = this.props.authorizedUserId
+            if (!userId){
+                this.props.history.push('/login')
+            }
         }
         this.props.getUserProfile(userId)
         this.props.getUserStatus(userId)
