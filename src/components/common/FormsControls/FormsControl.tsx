@@ -1,5 +1,4 @@
 import styles from './FormsControl.module.css'
-
 const FormControl = ({input, meta, child, ...props}: any) => {
     const hasError = meta.touched && meta.error
     return (
@@ -8,7 +7,6 @@ const FormControl = ({input, meta, child, ...props}: any) => {
             {hasError && <span>{meta.error}</span>}
         </div>
     )
-
 }
 export const Textarea = (props: any) => {
     const {input, meta, child, ...restProps} = props

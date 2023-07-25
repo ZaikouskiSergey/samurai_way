@@ -2,11 +2,11 @@ import React from 'react';
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import styles from "./Login.module.css"
 import {Input} from "../common/FormsControls/FormsControl";
-import {requiredField} from "../../utils/validators/validators";
+import {requiredField} from "utils/validators/validators";
 import {connect} from "react-redux";
-import {loginTC} from "../../redux/auth-reducer";
+import {loginTC} from "redux/auth-reducer";
 import {Redirect} from "react-router-dom";
-import {RootState} from "../../redux/redux-store";
+import {RootState} from "redux/redux-store";
 
 type FormDataType = {
     email: string

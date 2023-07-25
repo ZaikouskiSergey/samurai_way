@@ -1,8 +1,7 @@
 import {PostsType} from "./store";
-import {ProfileAPIProps} from "../components/Profile/ProfileContainer";
+import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
-import {profileAPI, usersAPI} from "../api/api";
-
+import {profileAPI, usersAPI} from "api/api";
 
 const initialState = {
     posts: [
@@ -47,7 +46,6 @@ export const addPostActionCreator = (newPostText: string) => ({type: "ADD-POST",
 export const setUserProfile = (profile: ProfileAPIProps) =>
     ({type: 'SET-USER-PROFILE', profile} as const)
 export const setUserStatusAC = (status: string) => ({type: 'SET-USER-STATUS', status} as const)
-
 
 //thunks
 

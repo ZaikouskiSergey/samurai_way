@@ -1,8 +1,8 @@
 import React from "react";
 import Header from "./Header";
-import {logOutTC} from "../../redux/auth-reducer";
+import {logOutTC} from "redux/auth-reducer";
 import {connect} from "react-redux";
-import {RootState} from "../../redux/redux-store";
+import {RootState} from "redux/redux-store";
 
 type HeaderContainerPropsType = {
     logOutTC: () => void

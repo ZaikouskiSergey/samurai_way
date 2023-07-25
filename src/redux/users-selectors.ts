@@ -1,5 +1,4 @@
 import {RootState} from "redux/redux-store";
-
 export const getUsers=(state: RootState)=>{
     return state.usersPage.users
 }

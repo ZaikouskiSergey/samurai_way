@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './users.module.css';
-import {UserType} from "../../redux/users-reducer";
+import {UserType} from "redux/users-reducer";
 import AvatarPhoto from '../../assets/images/Avatarki.jpg'
 import {NavLink} from "react-router-dom";
 
@@ -13,14 +13,12 @@ type UsersProps = {
     followTC: (userId: number) => void
     unFollowTC: (userId: number) => void
     onPageChanged: (p: number) => void
-
 }
 type FollowUserResponseType = {
     resultCode: number
     messages: Array<string>
     data: {}
     fieldsErrors: Array<string>
-
 }
 
 const Users: React.FC<UsersProps> = (props) => {
