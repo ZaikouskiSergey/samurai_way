@@ -1,14 +1,8 @@
 import React, {ComponentType} from 'react';
 import {connect} from "react-redux";
-import {
-    followTC, getUsersTC,
-    setCurrentPage,
-    unFollowTC,
-    UserType
-} from "../../redux/users-reducer";
+import {followTC, getUsersTC, setCurrentPage, unFollowTC, UserType} from "redux/users-reducer";
 import Users from "./Users";
 import {Preloader} from "../common/Preloader/Preloader";
-import {WithAuthRedirect} from "../../hoc/WithAuthRedirect";
 import {compose} from "redux";
 import {RootState} from "redux/redux-store";
 import {
@@ -17,7 +11,7 @@ import {
     getIsFetching,
     getPageSize,
     getTotalUsersCount,
-    getUsers
+    getUsersSuperSelector
 } from "redux/users-selectors";
 
 type UserResponseType = {
@@ -79,7 +73,7 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
 // }
 const mapStateToProps = (state: RootState) => {
     return {
-        users: getUsers(state),
+        users: getUsersSuperSelector(state),
         pageSize: getPageSize(state),
         totalUsersCount: getTotalUsersCount(state),
         currentPage: getCurrentPage(state),
