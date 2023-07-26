@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {AuthAPI} from "../api/api";
+import {AuthAPI} from "api/api";
 import {stopSubmit} from "redux-form";
 
 const initialState = {

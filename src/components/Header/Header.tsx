@@ -1,13 +1,11 @@
 import React from "react";
 import s from './Header.module.css';
 import {NavLink} from "react-router-dom";
-import {logOutTC} from "../../redux/auth-reducer";
 
 type HeaderPropsType = {
     isAuth: boolean | null
     login: string | null
     logOutTC: () => void
-
 }
 const Header: React.FC<HeaderPropsType> = (props) => {
     return (
