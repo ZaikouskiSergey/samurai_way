@@ -1,9 +1,8 @@
-import React, {ChangeEvent, RefObject} from "react";
+import React from "react";
 import s from './MyPosts.module.css'
 import Post from "./Post/Post";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {maxLengthCreator, requiredField} from "../../../utils/validators/validators";
-import {kMaxLength} from "buffer";
+import {maxLengthCreator, requiredField} from "utils/validators/validators";
 import {Textarea} from "../../common/FormsControls/FormsControl";
 
 type MyPostsPropsType = {

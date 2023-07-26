@@ -3,6 +3,7 @@ import s from './ProfileInfo.module.css';
 import {ProfileAPIProps} from "../../ProfileContainer";
 import {Preloader} from "../../../common/Preloader/Preloader";
 import ProfileStatus from './ProfileStatus'
+import {ProfileStatusWithHooks} from "components/Profile/MyPosts/ProfileInfo/ProfileStatusWithHooks";
 
 export type ProfileInfoPropsType ={
     profile: ProfileAPIProps
@@ -26,7 +27,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
                 />
 
                 <h3>{profile.fullName}</h3>
-                <ProfileStatus status={status} updateUserStatus={updateUserStatus}/>
+                <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
                 <p>{profile.aboutMe}</p>
 
             </div>
