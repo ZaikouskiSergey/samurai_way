@@ -16,7 +16,6 @@ type PostsType = {
 }
 
 const MyPosts = React.memo((props: MyPostsPropsType) => {
-
     let postsElements = props.posts.map(p => (
         <Post message={p.message} likesCount={p.likesCount}/>
     ))

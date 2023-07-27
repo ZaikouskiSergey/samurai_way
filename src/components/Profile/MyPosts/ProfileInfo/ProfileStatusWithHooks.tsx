@@ -24,7 +24,6 @@ export const ProfileStatusWithHooks: FC<ProfileStatusPropsType> = ({updateUserSt
         setEditMode(false)
         updateUserStatus(statusProfile)
     }
-
     return (
         <div>
             {!editMode ?

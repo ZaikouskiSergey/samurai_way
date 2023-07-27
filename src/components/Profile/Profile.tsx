@@ -7,7 +7,6 @@ export type ProfilePropsType = {
     profile: ProfileAPIProps
     status: string
     updateUserStatus: (status: string) => void
-
 }
 const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus}) => {
     return (
