@@ -15,7 +15,7 @@ type PostsType = {
     likesCount: number
 }
 
-const MyPosts = (props: MyPostsPropsType) => {
+const MyPosts = React.memo((props: MyPostsPropsType) => {
 
     let postsElements = props.posts.map(p => (
         <Post message={p.message} likesCount={p.likesCount}/>
@@ -23,18 +23,17 @@ const MyPosts = (props: MyPostsPropsType) => {
     const onAddPost = (values: AddNewPostFormType) => {
         props.addPost(values.newPostText)
     }
-
     return (
         <div className={s.postsBlock}>
             <h3>My posts</h3>
-            <AddNewPostFormRedux onSubmit={onAddPost} />
+            <AddNewPostFormRedux onSubmit={onAddPost}/>
             <div className={s.posts}>
                 {postsElements}
             </div>
-
         </div>
     )
-}
+})
+
 export type AddNewPostFormType = {
     newPostText: string
 }

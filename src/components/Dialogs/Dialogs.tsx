@@ -1,11 +1,10 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Messege/Message";
-import {Redirect} from "react-router-dom";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
 import {Textarea} from "../common/FormsControls/FormsControl";
-import {maxLengthCreator, requiredField} from "../../utils/validators/validators";
+import {maxLengthCreator, requiredField} from "utils/validators/validators";
 
 type DialogsPropsType = {
     sendMessage: (newMessageBody:string) => void
@@ -39,8 +38,6 @@ const Dialogs = (props: DialogsPropsType) => {
         props.sendMessage(values.newMessageBody)
 
     }
-    // debugger
-    // if(!props.isAuth) return <Redirect to={"/login"}/>
 
     return (
         <div className={s.dialogs}>
