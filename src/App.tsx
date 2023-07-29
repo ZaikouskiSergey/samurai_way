@@ -16,7 +16,6 @@ import {initializeApp} from "redux/app-reducer";
 import {RootState} from "redux/redux-store";
 import {Preloader} from "components/common/Preloader/Preloader";
 
-
 type AppContainerPropsType = {
     initializeApp: () => void
     initialized: boolean
@@ -36,16 +35,13 @@ class App extends React.Component<AppContainerPropsType> {
                     <div className='app-wrapper-content'>
                         <Route path="/profile/:userId?"
                                render={() => <ProfileContainer/>}/>
-
                         <Route path="/dialogs"
-                               render={() => <
-                                   DialogsContainer/>}/>
+                               render={() => <DialogsContainer/>}/>
                         <Route path="/news" render={() => <News/>}/>
                         <Route path="/music" render={() => <Music/>}/>
                         <Route path="/settings" render={() => <Settings/>}/>
                         <Route path="/users" render={() => <UsersContainer/>}/>
                         <Route path="/login" render={() => <LoginPage/>}/>
-
                     </div>
                 </div>
            );
@@ -54,7 +50,6 @@ class App extends React.Component<AppContainerPropsType> {
 const mapStateToProps = (state: RootState)=>({
     initialized: state.app.initialized
 })
-
 export default compose<React.ComponentType>(
     withRouter,
     connect(mapStateToProps, {initializeApp})
