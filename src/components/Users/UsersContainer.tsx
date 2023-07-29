@@ -30,17 +30,18 @@ type UsersAPIProps = {
     followTC: (userId: number) => void
     unFollowTC: (userId: number) => void
     setCurrentPage: (currentPage: number) => void
-
 }
 
 class UsersContainer extends React.Component<UsersAPIProps, any> {
     componentDidMount() {
-        this.props.getUsersTC(this.props.currentPage, this.props.pageSize)
+        const {getUsersTC, currentPage, pageSize} = this.props
+        getUsersTC(currentPage, pageSize)
     }
 
     onPageChanged = (currentNumber: number) => {
-        this.props.setCurrentPage(currentNumber)
-        this.props.getUsersTC(currentNumber, this.props.pageSize)
+        const {setCurrentPage, getUsersTC, pageSize} = this.props
+        setCurrentPage(currentNumber)
+        getUsersTC(currentNumber, pageSize)
     }
 
     render() {
@@ -61,16 +62,6 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
     }
 }
 
-// const mapStateToProps = (state: RootState) => {
-//     return {
-//         users: state.usersPage.users,
-//         pageSize: state.usersPage.pageSize,
-//         totalUsersCount: state.usersPage.totalUsersCount,
-//         currentPage: state.usersPage.currentPage,
-//         isFetching: state.usersPage.isFetching,
-//         followingInProgress: state.usersPage.followingInProgress
-//     }
-// }
 const mapStateToProps = (state: RootState) => {
     return {
         users: getUsersSuperSelector(state),
@@ -81,8 +72,6 @@ const mapStateToProps = (state: RootState) => {
         followingInProgress: getFollowingInProgress(state)
     }
 }
-
-
 export default compose<ComponentType>(
     connect(mapStateToProps, {followTC, unFollowTC, getUsersTC, setCurrentPage})
 )(UsersContainer)
