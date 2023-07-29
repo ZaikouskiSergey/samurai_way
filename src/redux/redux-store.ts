@@ -36,5 +36,4 @@ export type RootState = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<RootState, any, AnyAction>
 export const useAppDispatch = () => useDispatch<AppThunkDispatch>();
 //window.store = store;
-
 export default store;

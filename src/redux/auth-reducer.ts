@@ -21,7 +21,6 @@ export const setAuthUserData = (id: number | null, login: string | null, email: 
     return {type: "authReducer/SET-USER-DATA", payload: {id, email, login, isAuth}} as const
 }
 //thunks
-
 export const getAuthUserData = () => async (dispatch: Dispatch) => {
     try {
         const response = await AuthAPI.me()
@@ -30,9 +29,7 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
             dispatch(setAuthUserData(id, login, email, true))
         }
     } catch (e) {
-
     }
-
 }
 
 export const loginTC = (email: string, password: string, rememberMe: boolean) => {

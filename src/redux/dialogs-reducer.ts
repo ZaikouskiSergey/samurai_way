@@ -16,10 +16,9 @@ const initialState = {
         {id: 6, name: 'Valera'},
     ]
 }
-
 export const dialogsReducer = (state: DialogInitialStateType = initialState, action:ActionsDialogsType): DialogInitialStateType => {
     switch (action.type) {
-        case "SEND-MESSAGE":
+        case "dialogsReducer/SEND-MESSAGE":
             return {...state,
                 messages: [...state.messages, {id: 5, message: action.newMessageBody}]};
         default:
@@ -27,7 +26,7 @@ export const dialogsReducer = (state: DialogInitialStateType = initialState, act
     }
 }
 //actions
-export const sendMessageCreator = (newMessageBody:string) => ({type: "SEND-MESSAGE", newMessageBody} as const)
+export const sendMessageCreator = (newMessageBody:string) => ({type: "dialogsReducer/SEND-MESSAGE", newMessageBody} as const)
 
 //types
 export type DialogInitialStateType = {
