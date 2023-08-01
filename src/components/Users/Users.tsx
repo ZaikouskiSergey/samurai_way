@@ -37,5 +37,4 @@ const Users: React.FC<UsersProps> = (props) => {
         </div>
     )
 }
-
 export default Users;

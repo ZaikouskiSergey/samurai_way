@@ -28,7 +28,6 @@ const Paginator: React.FC<PaginatorProps> = ({totalUsersCount, pageSize, current
             })}
             ...
         </div>
-
     )
 }
 
