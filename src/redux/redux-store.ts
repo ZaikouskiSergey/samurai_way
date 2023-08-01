@@ -9,7 +9,7 @@ import thunk, {ThunkDispatch} from "redux-thunk";
 import {reducer as formReducer} from "redux-form";
 import {useDispatch} from "react-redux";
 import {appReducer} from "redux/app-reducer";
-import { composeWithDevTools } from '@redux-devtools/extension';
+
 
 
 export type stateType = {
@@ -33,7 +33,7 @@ let reducers = combineReducers({
     form: formReducer,
     app : appReducer
 })
-let store = createStore(reducers, composeWithDevTools(applyMiddleware(thunk)))
+let store = createStore(reducers, applyMiddleware(thunk))
 export type RootState = ReturnType<typeof reducers>
 export type AppThunkDispatch = ThunkDispatch<RootState, any, AnyAction>
 export const useAppDispatch = () => useDispatch<AppThunkDispatch>();
