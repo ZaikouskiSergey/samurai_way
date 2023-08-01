@@ -1,11 +1,15 @@
 
-.selectedPage{
-    font-weight: bold;
-    margin: 5px;
+.paginator {
+    margin: 10px;
+}
+.pageNumber{
+    padding: 3px;
+    border: 1px solid grey;
 
 }
-.users_pages {
-    margin: 10px;
+.selectedPage{
+    font-weight: 700;
+    border-color: gold;
 }
 .users_pages span:hover{
     cursor: alias;
