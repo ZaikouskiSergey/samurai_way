@@ -7,7 +7,7 @@ import {Textarea} from "../common/FormsControls/FormsControl";
 import {maxLengthCreator, requiredField} from "utils/validators/validators";
 
 type DialogsPropsType = {
-    sendMessage: (newMessageBody:string) => void
+    sendMessage: (newMessageBody: string) => void
     dialogsPage: {
         dialogs: Array<DialogType>,
         messages: Array<MessageType>,
@@ -23,7 +23,6 @@ type MessageType = {
     message: string,
     id?: number
 }
-
 const Dialogs = (props: DialogsPropsType) => {
 
     let state = props.dialogsPage;
@@ -34,11 +33,9 @@ const Dialogs = (props: DialogsPropsType) => {
     let messagesElements = state.messages.map(message => (
         <Message key={message.id} message={message.message}/>
     ))
-    const addNewMessage = (values:AddMessageFormType) => {
+    const addNewMessage = (values: AddMessageFormType) => {
         props.sendMessage(values.newMessageBody)
-
     }
-
     return (
         <div className={s.dialogs}>
             <div className={s.dialogItems}>
@@ -47,7 +44,6 @@ const Dialogs = (props: DialogsPropsType) => {
             <div className={s.messages}>
                 <div>{messagesElements}</div>
                 <AddMessageFormRedux onSubmit={addNewMessage}/>
-
             </div>
         </div>
     )
@@ -66,7 +62,7 @@ const AddMessageForm: React.FC<InjectedFormProps<AddMessageFormType>> = (props) 
                    name={'newMessageBody'}
                    placeholder={'Enter your message'}/>
             <div>
-                <button >send message</button>
+                <button>send message</button>
             </div>
         </form>
     )

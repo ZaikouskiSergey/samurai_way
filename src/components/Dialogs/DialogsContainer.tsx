@@ -7,13 +7,13 @@ import {compose, Dispatch} from "redux";
 import {WithAuthRedirect} from "hoc/WithAuthRedirect";
 
 let mapStateToProps = (state: RootState) => {
-       return {
+    return {
         dialogsPage: state.dialogsPage
     }
 }
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        sendMessage: (newMessageBody:string) => {
+        sendMessage: (newMessageBody: string) => {
             dispatch(sendMessageCreator(newMessageBody))
         }
     }

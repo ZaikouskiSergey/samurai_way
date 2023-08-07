@@ -61,7 +61,6 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
         </>
     }
 }
-
 const mapStateToProps = (state: RootState) => {
     return {
         users: getUsersSuperSelector(state),

@@ -1,6 +1,6 @@
 import axios from "axios";
-import {UserType} from "../redux/users-reducer";
-import {ProfileAPIProps} from "../components/Profile/ProfileContainer";
+import {UserType} from "redux/users-reducer";
+import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 
 type UserResponseType = {
     items: UserType[]

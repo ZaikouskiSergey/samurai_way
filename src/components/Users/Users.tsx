@@ -13,12 +13,12 @@ type UsersProps = {
     unFollowTC: (userId: number) => void
     onPageChanged: (p: number) => void
 }
-type FollowUserResponseType = {
-    resultCode: number
-    messages: Array<string>
-    data: {}
-    fieldsErrors: Array<string>
-}
+// type FollowUserResponseType = {
+//     resultCode: number
+//     messages: Array<string>
+//     data: {}
+//     fieldsErrors: Array<string>
+// }
 
 const Users: React.FC<UsersProps> = (props) => {
     return (
