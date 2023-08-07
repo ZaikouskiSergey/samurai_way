@@ -1,6 +1,6 @@
 import {profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
-import {ProfileAPIProps} from "../components/Profile/ProfileContainer";
+import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 
 export type StoreType = {
     _state: stateType

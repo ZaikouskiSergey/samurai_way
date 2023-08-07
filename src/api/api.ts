@@ -29,36 +29,46 @@ export const usersAPI = {
                 return response.data
             })
     },
-    follow(userId:number){
+    follow(userId: number) {
         return instance.post<FollowUserResponseType>(`follow/${userId}`)
     },
-    unfollow(userId:number){
+    unfollow(userId: number) {
         return instance.delete<FollowUserResponseType>(`follow/${userId}`)
     },
-    getProfile(userId:number){
+    getProfile(userId: number) {
         console.warn('Obsolete method. Please use profileAPI object')
         return profileAPI.getProfile(userId)
     }
 }
 
 export const profileAPI = {
-    getProfile(userId:number){
+    getProfile(userId: number) {
         return instance.get<ProfileAPIProps>(`profile/${userId}`)
     },
-    getStatus(userId:number){
+    getStatus(userId: number) {
         return instance.get(`profile/status/${userId}`)
     },
-    updateStatus(newStatus:string){
+    updateStatus(newStatus: string) {
         return instance.put(`profile/status`, {status: newStatus})
+    },
+    savePhoto(photoFile: any) {
+        const formData = new FormData()
+        formData.append('image',photoFile)
+        return instance.put(`profile/photo`, formData, {
+            headers: {
+                'Content-Type' : 'multipart/form-data'
+            }
+        } )
     }
 }
-export const AuthAPI={
-    me(){
-        return instance.get<AuthResponseType>(`auth/me`)},
-    login(email:string, password:string, rememberMe: boolean){
-        return instance.post(`auth/login`, {email, password,rememberMe})
+export const AuthAPI = {
+    me() {
+        return instance.get<AuthResponseType>(`auth/me`)
     },
-    logOut(){
+    login(email: string, password: string, rememberMe: boolean) {
+        return instance.post(`auth/login`, {email, password, rememberMe})
+    },
+    logOut() {
         return instance.delete(`auth/login`)
     }
 }
