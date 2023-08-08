@@ -1,4 +1,5 @@
-import {DialogType, MessageType} from "./store";
+import {DialogType, MessageType} from "redux/profile-reducer";
+
 
 const initialState = {
     messages: [

@@ -1,4 +1,5 @@
 import {addPostActionCreator, deletePostAC, profileReducer} from "redux/profile-reducer";
+import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 
 const initialState = {
     posts: [
@@ -6,7 +7,7 @@ const initialState = {
         {id: 2, message: "It's my first post", likesCount: 20},
         {id: 3, message: "Blabla", likesCount: 2}
     ],
-    profile: null,
+    profile: {} as ProfileAPIProps,
     status: ''
 }
 it('new post should be incremented', ()=>{

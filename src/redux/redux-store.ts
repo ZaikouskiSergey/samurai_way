@@ -1,7 +1,6 @@
 import {AnyAction, applyMiddleware, combineReducers, createStore} from "redux";
-import {profileReducer} from "./profile-reducer";
+import {DialogType, MessageType, PostsType, profileReducer} from "./profile-reducer";
 import {dialogsReducer} from "./dialogs-reducer";
-import {DialogType, MessageType, PostsType} from "./store";
 import {usersReducer} from "./users-reducer";
 import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 import {authReducer} from "./auth-reducer";
@@ -9,6 +8,7 @@ import thunk, {ThunkDispatch} from "redux-thunk";
 import {reducer as formReducer} from "redux-form";
 import {useDispatch} from "react-redux";
 import {appReducer} from "redux/app-reducer";
+
 
 export type stateType = {
     profilePage: {

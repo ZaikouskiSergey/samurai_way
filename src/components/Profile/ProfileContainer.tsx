@@ -29,7 +29,7 @@ export type ProfileAPIProps = {
     }
 }
 type MapStateToPropsType = {
-    profile: ProfileAPIProps | null
+    profile: ProfileAPIProps
     isAuth: boolean
     status: string
     authorizedUserId: null | number
@@ -77,7 +77,7 @@ class ProfileContainer extends React.Component<any, any> {
     }
 }
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootState) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
     isAuth: state.auth.isAuth,

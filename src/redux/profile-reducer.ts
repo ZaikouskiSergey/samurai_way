@@ -1,4 +1,4 @@
-import {PostsType} from "./store";
+
 import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "api/api";
@@ -9,7 +9,27 @@ const initialState = {
         {id: 2, message: "It's my first post", likesCount: 20},
         {id: 3, message: "Blabla", likesCount: 2}
     ],
-    profile: null,
+    profile: {
+        aboutMe: '',
+        userId: 0,
+        lookingForAJob: true,
+        lookingForAJobDescription: 'lookingForAJobDescription',
+        fullName: '',
+        contacts: {
+            github: 'github',
+            vk: 'vk',
+            facebook: 'facebook',
+            instagram: 'instagram',
+            twitter: 'twitter',
+            website: 'website',
+            youtube: 'youtube',
+            mainLink: ''
+        },
+        photos: {
+            small: '',
+            large: '',
+        }
+    },
     status: ''
 }
 export const profileReducer = (state: ProfileInitialStateType = initialState, action: ActionsProfileType) => {
@@ -77,8 +97,40 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
 // types
 type ProfileInitialStateType = {
     posts: Array<PostsType>
-    profile: ProfileAPIProps | null
+    profile: ProfileAPIProps
     status: string
+}
+
+export type StoreType = {
+    _state: stateType
+    _callSubscriber: (state: stateType) => void
+    getState: () => stateType
+    dispatch: (action: any) => void
+    subscribe: (observer: any) => void
+}
+export type stateType = {
+    profilePage: {
+        posts: Array<PostsType>
+        profile: ProfileAPIProps | null
+        status: string
+    },
+    dialogsPage: {
+        dialogs: Array<DialogType>,
+        messages: Array<MessageType>
+    }
+}
+export type MessageType = {
+    message: string,
+    id?: number
+}
+export type DialogType = {
+    name: string,
+    id: string | number
+}
+export type PostsType = {
+    id?: number,
+    message: string,
+    likesCount: number
 }
 
 
