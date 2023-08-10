@@ -1,8 +1,9 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, useState} from "react";
 import s from './ProfileInfo.module.css';
 import {ProfileAPIProps} from "../../ProfileContainer";
 import {Preloader} from "../../../common/Preloader/Preloader";
 import {ProfileStatusWithHooks} from "components/Profile/MyPosts/ProfileInfo/ProfileStatusWithHooks";
+import ProfileDataForm from "components/Profile/MyPosts/ProfileInfo/ProfileDataForm";
 
 export type ProfileInfoPropsType = {
     profile: ProfileAPIProps
@@ -12,6 +13,8 @@ export type ProfileInfoPropsType = {
     savePhoto: (file: File) => void
 }
 const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus, isOwner, savePhoto}) => {
+    const [editMode, setEditMode] = useState<boolean>(false)
+
     if (!profile) {
         return <Preloader/>
     }
@@ -20,7 +23,6 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
         if (e.target.files?.length) {
             savePhoto(e.target.files[0])
         }
-
     }
     return (
         <div>
@@ -33,11 +35,11 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
                     alt={'ava'}
                 />
                 {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
-                <ProfileData profile={profile} />
-
-
+                {editMode
+                    ? <ProfileDataForm/>
+                    : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={()=> {setEditMode(true)}}/>
+                }
                 <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
-
 
             </div>
         </div>
@@ -48,25 +50,33 @@ type ContactPropsType = {
     contactsValue: string | null
 }
 
-type ProfileDataType= {
+type ProfileDataType = {
     profile: ProfileAPIProps
+    isOwner: boolean
+    goToEditMode: ()=> void
 }
-const ProfileData: React.FC<ProfileDataType>=({profile})=>{
+
+
+const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner,goToEditMode}) => {
     return (
         <div>
-            <h2>{profile.fullName}</h2>
-            <div><b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}</div>
-            {profile.lookingForAJob && <div><b>My skills</b>profile.lookingForAJobDescription</div>}
-
-
-            <div><b>About me:</b> {profile.aboutMe}</div>
+            {isOwner && <div><button onClick={goToEditMode}>edit</button></div>}
             <div>
-                <b>Contacts:</b>
-                {Object.keys(profile.contacts).map(key => {
-                    return <Contact key={key} contactsTitle={key} contactsValue={profile.contacts[key]}/>
+                <h2>{profile.fullName}</h2>
+                <div><b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}</div>
+                {profile.lookingForAJob && <div><b>My skills</b>profile.lookingForAJobDescription</div>}
 
-                })} </div>
+
+                <div><b>About me:</b> {profile.aboutMe}</div>
+                <div>
+                    <b>Contacts:</b>
+                    {Object.keys(profile.contacts).map(key => {
+                        return <Contact key={key} contactsTitle={key} contactsValue={profile.contacts[key]}/>
+
+                    })} </div>
+            </div>
         </div>
+
     )
 }
 
