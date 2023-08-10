@@ -9,15 +9,15 @@ export type ProfileInfoPropsType = {
     status: string
     updateUserStatus: (status: string) => void
     isOwner: boolean
-    savePhoto: (file: File)=> void
+    savePhoto: (file: File) => void
 }
 const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus, isOwner, savePhoto}) => {
     if (!profile) {
         return <Preloader/>
     }
-    const onMainPhotoSelected = (e:ChangeEvent<HTMLInputElement>) => {
+    const onMainPhotoSelected = (e: ChangeEvent<HTMLInputElement>) => {
         //e.currentTarget.files
-        if(e.target.files?.length){
+        if (e.target.files?.length) {
             savePhoto(e.target.files[0])
         }
 
@@ -33,13 +33,50 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
                     alt={'ava'}
                 />
                 {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
+                <ProfileData profile={profile} />
 
-                <h3>{profile.fullName}</h3>
+
                 <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
-                <p>{profile.aboutMe}</p>
+
 
             </div>
         </div>
     )
 }
+type ContactPropsType = {
+    contactsTitle: string | null
+    contactsValue: string | null
+}
+
+type ProfileDataType= {
+    profile: ProfileAPIProps
+}
+const ProfileData: React.FC<ProfileDataType>=({profile})=>{
+    return (
+        <div>
+            <h2>{profile.fullName}</h2>
+            <div><b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}</div>
+            {profile.lookingForAJob && <div><b>My skills</b>profile.lookingForAJobDescription</div>}
+
+
+            <div><b>About me:</b> {profile.aboutMe}</div>
+            <div>
+                <b>Contacts:</b>
+                {Object.keys(profile.contacts).map(key => {
+                    return <Contact key={key} contactsTitle={key} contactsValue={profile.contacts[key]}/>
+
+                })} </div>
+        </div>
+    )
+}
+
+const Contact: React.FC<ContactPropsType> = ({contactsTitle, contactsValue}) => {
+    return (
+        <div className={s.contacts}>
+            <b>{contactsTitle}</b>: {contactsValue}
+        </div>
+
+    )
+}
+
 export default ProfileInfo;

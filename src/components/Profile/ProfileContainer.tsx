@@ -22,6 +22,7 @@ export type ProfileAPIProps = {
         website: string | null
         youtube: string | null
         mainLink: string | null
+        [key: string]: string | null;
     }
     photos: {
         small: string | null
