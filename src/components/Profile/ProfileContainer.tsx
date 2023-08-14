@@ -72,6 +72,7 @@ class ProfileContainer extends React.Component<any, any> {
                          status={this.props.status}
                          updateUserStatus={this.props.updateUserStatus}
                          savePhoto={this.props.savePhoto}
+                         saveProfile={this.props.saveProfile}
                 />
             </div>
         )
@@ -89,7 +90,7 @@ const mapStateToProps = (state: RootState) => ({
 //let AuthRedirectComponent = WithAuthRedirect(ProfileContainer)
 //let withUrlDataContainerComponent = withRouter(ProfileContainer)
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto}),
+    connect(mapStateToProps, {getUserProfile, getUserStatus, updateUserStatus, savePhoto, saveProfile}),
     withRouter,
     WithAuthRedirect
 )(ProfileContainer)

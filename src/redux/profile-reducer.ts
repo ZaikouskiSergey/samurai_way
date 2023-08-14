@@ -94,6 +94,12 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
         dispatch(savePhotoSuccessAC(response.data.data.photos))
     }
 }
+export const saveProfile = (profile: ProfileAPIProps) => async (dispatch: Dispatch) => {
+    let response = await profileAPI.saveProfile(profile)
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccessAC(response.data.data.photos))
+    }
+}
 // types
 type ProfileInitialStateType = {
     posts: Array<PostsType>

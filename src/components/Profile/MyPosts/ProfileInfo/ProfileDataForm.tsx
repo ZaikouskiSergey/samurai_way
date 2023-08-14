@@ -1,33 +1,47 @@
 import React from 'react';
 import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 import {Field, InjectedFormProps, reduxForm} from "redux-form";
-import {Input} from "components/common/FormsControls/FormsControl";
+import {Input, Textarea} from "components/common/FormsControls/FormsControl";
+
 type ProfileDataFormType = {
     profile: ProfileAPIProps
 }
-const ProfileDataForm: React.FC<InjectedFormProps<ProfileDataFormType>> = ({handleSubmit, error}) => {
+const ProfileDataForm: React.FC<InjectedFormProps<ProfileAPIProps>> = ({handleSubmit, error}) => {
     return (
         <form onSubmit={handleSubmit}>
-            <div><button onClick={()=>{}}>save</button></div>
+            <div>
+                <button>save</button>
+            </div>
             <div>
                 <div><b>Full name</b>:
                     <Field
-                    placeholder={'full name'}
-                    name={'fullName'}
-                    component={Input}
+                        placeholder={'full name'}
+                        name={'fullName'}
+                        component={Input}
                     />
                 </div>
-                <div><b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}</div>
-                {profile.lookingForAJob && <div><b>My skills</b>profile.lookingForAJobDescription</div>}
-
-
-                <div><b>About me:</b> {profile.aboutMe}</div>
-                {/*<div>*/}
-                {/*    <b>Contacts:</b>*/}
-                {/*    {Object.keys(profile.contacts).map(key => {*/}
-                {/*        return <Contact key={key} contactsTitle={key} contactsValue={profile.contacts[key]}/>*/}
-
-                {/*    })} </div>*/}
+                <div><b>Looking for a job:</b>
+                    <Field
+                        placeholder={''}
+                        name={'lookingForAJob'}
+                        component={Input}
+                        type={"checkbox"}
+                    />
+                </div>
+                <div><b>My skills:</b>
+                    <Field
+                        placeholder={'My skills'}
+                        name={'lookingForAJobDescription'}
+                        component={Textarea}
+                    />
+                </div>
+                <div><b>About me:</b>
+                    <Field
+                        placeholder={'About me:'}
+                        name={'aboutMe:'}
+                        component={Textarea}
+                    />
+                </div>
             </div>
         </form>
 
