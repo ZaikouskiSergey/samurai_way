@@ -17,7 +17,7 @@ const ProfileDataForm: React.FC<InjectedFormProps & ProfileDataFormType> = ({han
             <div>
                 <button>save</button>
             </div>
-            {error && <div className={styles.formSummaryError}> {error}</div>}
+            {error && <div className={styles.formSummaryError}>{error}</div>}
             <div>
                 <div><b>Full name</b>:
                     <Field

@@ -11,7 +11,7 @@ export type ProfileInfoPropsType = {
     updateUserStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: File) => void
-    saveProfile: (profile: ProfileAPIProps) => void
+    saveProfile: (profile: ProfileAPIProps) => Promise<any>
 }
 const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUserStatus, isOwner, savePhoto, saveProfile}) => {
     const [editMode, setEditMode] = useState<boolean>(false)
@@ -25,9 +25,11 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
             savePhoto(e.target.files[0])
         }
     }
-    const onSubmit = (formData:any)=>{
-        saveProfile(formData)
-        setEditMode(false)
+    const onSubmit = (formData:ProfileAPIProps)=>{
+        saveProfile(formData).then(()=>{
+            setEditMode(false)
+        })
+
 
     }
     return (

@@ -61,7 +61,7 @@ export const profileAPI = {
         } )
     },
     saveProfile(profile: ProfileAPIProps){
-        debugger
+
         return instance.put(`profile`, profile)
     }
 }

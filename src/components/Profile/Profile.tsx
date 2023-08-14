@@ -9,7 +9,7 @@ export type ProfilePropsType = {
     updateUserStatus: (status: string) => void
     isOwner: boolean
     savePhoto: (file: File)=> void
-    saveProfile: (profile: ProfileAPIProps) => void
+    saveProfile: (profile: ProfileAPIProps) => Promise<any>
 }
 const Profile: React.FC<ProfilePropsType> = ({profile, status, updateUserStatus, isOwner, savePhoto, saveProfile}) => {
     return (
