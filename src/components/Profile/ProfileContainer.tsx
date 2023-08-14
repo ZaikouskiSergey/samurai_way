@@ -1,14 +1,14 @@
 import React from "react";
 import Profile from "./Profile";
 import {connect} from "react-redux";
-import {getUserProfile, getUserStatus, savePhoto, updateUserStatus} from "redux/profile-reducer";
+import {getUserProfile, getUserStatus, savePhoto, saveProfile, updateUserStatus} from "redux/profile-reducer";
 import {withRouter} from "react-router-dom";
 import {RootState} from "redux/redux-store";
 import {WithAuthRedirect} from "hoc/WithAuthRedirect";
 import {compose} from "redux";
 
 export type ProfileAPIProps = {
-    aboutMe: string | null
+    aboutMe: string
     userId: number
     lookingForAJob: boolean
     lookingForAJobDescription: string | null

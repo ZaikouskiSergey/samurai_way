@@ -6,7 +6,7 @@ import {Input, Textarea} from "components/common/FormsControls/FormsControl";
 type ProfileDataFormType = {
     profile: ProfileAPIProps
 }
-const ProfileDataForm: React.FC<InjectedFormProps<ProfileAPIProps>> = ({handleSubmit, error}) => {
+const ProfileDataForm: React.FC<InjectedFormProps<any>> = ({handleSubmit}) => {
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -38,10 +38,17 @@ const ProfileDataForm: React.FC<InjectedFormProps<ProfileAPIProps>> = ({handleSu
                 <div><b>About me:</b>
                     <Field
                         placeholder={'About me:'}
-                        name={'aboutMe:'}
+                        name={'aboutMe'}
                         component={Textarea}
                     />
                 </div>
+               {/* <div>
+                    <b>Contacts:</b>
+                    {Object.keys(profile.contacts).map(key => {
+                        return <Contact key={key} contactsTitle={key} contactsValue={profile.contacts[key]}/>
+
+                    })}
+                </div>*/}
             </div>
         </form>
 

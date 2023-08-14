@@ -61,7 +61,8 @@ export const profileAPI = {
         } )
     },
     saveProfile(profile: ProfileAPIProps){
-        return instance.put(`profile/profile`, profile)
+        debugger
+        return instance.put(`profile`, profile)
     }
 }
 export const AuthAPI = {

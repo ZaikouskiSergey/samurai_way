@@ -25,8 +25,9 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
             savePhoto(e.target.files[0])
         }
     }
-    const onSubmit = (formData: FormDataType)=>{
+    const onSubmit = (formData:any)=>{
         saveProfile(formData)
+        setEditMode(false)
 
     }
     return (
@@ -41,7 +42,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
                 />
                 {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 {editMode
-                    ? <ProfileDataForm profile={profile} onSubmit={onSubmit}/>
+                    ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit}/>
                     : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={()=> {setEditMode(true)}}/>
                 }
                 <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>

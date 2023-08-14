@@ -2,6 +2,7 @@
 import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "api/api";
+import {AppThunkDispatch, RootState} from "redux/redux-store";
 
 const initialState = {
     posts: [
@@ -10,7 +11,7 @@ const initialState = {
         {id: 3, message: "Blabla", likesCount: 2}
     ],
     profile: {
-        aboutMe: '',
+        aboutMe:'',
         userId: 0,
         lookingForAJob: true,
         lookingForAJobDescription: 'lookingForAJobDescription',
@@ -94,10 +95,14 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
         dispatch(savePhotoSuccessAC(response.data.data.photos))
     }
 }
-export const saveProfile = (profile: ProfileAPIProps) => async (dispatch: Dispatch) => {
-    let response = await profileAPI.saveProfile(profile)
+export const saveProfile = (profile: ProfileAPIProps) => async (dispatch: AppThunkDispatch, getState:() => RootState) => {
+    const userId = getState().auth.id
+    const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
-        dispatch(savePhotoSuccessAC(response.data.data.photos))
+        console.log(response)
+        if(userId){
+            dispatch<any>(getUserProfile(userId))
+        }
     }
 }
 // types
