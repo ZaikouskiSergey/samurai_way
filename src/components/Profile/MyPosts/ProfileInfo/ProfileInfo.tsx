@@ -42,7 +42,7 @@ const ProfileInfo: React.FC<ProfileInfoPropsType> = ({profile, status, updateUse
                 />
                 {isOwner && <input type={"file"} onChange={onMainPhotoSelected}/>}
                 {editMode
-                    ? <ProfileDataForm initialValues={profile} onSubmit={onSubmit}/>
+                    ? <ProfileDataForm initialValues={profile} profile={profile} onSubmit={onSubmit}/>
                     : <ProfileData profile={profile} isOwner={isOwner} goToEditMode={()=> {setEditMode(true)}}/>
                 }
                 <ProfileStatusWithHooks status={status} updateUserStatus={updateUserStatus}/>
@@ -70,7 +70,7 @@ const ProfileData: React.FC<ProfileDataType> = ({profile, isOwner,goToEditMode})
             <div>
                 <h2>{profile.fullName}</h2>
                 <div><b>Looking for a job:</b> {profile.lookingForAJob ? 'yes' : 'no'}</div>
-                {profile.lookingForAJob && <div><b>My skills</b>profile.lookingForAJobDescription</div>}
+                {profile.lookingForAJob && <div><b>My skills: </b>{profile.lookingForAJobDescription}</div>}
 
 
                 <div><b>About me:</b> {profile.aboutMe}</div>

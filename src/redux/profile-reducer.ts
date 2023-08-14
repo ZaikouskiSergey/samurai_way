@@ -3,6 +3,7 @@ import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "api/api";
 import {AppThunkDispatch, RootState} from "redux/redux-store";
+import {stopSubmit} from "redux-form";
 
 const initialState = {
     posts: [
@@ -99,10 +100,12 @@ export const saveProfile = (profile: ProfileAPIProps) => async (dispatch: AppThu
     const userId = getState().auth.id
     const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
-        console.log(response)
         if(userId){
             dispatch<any>(getUserProfile(userId))
         }
+    } else {
+        //let message = response.data.messages.length > 0 ? response.data.messages[0] : "some error"
+        dispatch(stopSubmit("edit-profile", {_error: response.data.messages[0]}))
     }
 }
 // types
