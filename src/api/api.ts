@@ -77,6 +77,12 @@ export const AuthAPI = {
     }
 }
 
+export const securityAPI ={
+    getCaptchaUrl(){
+        return instance.get(`security/get-captcha-url`)
+    }
+}
+
 export type AuthResponseType = {
     data: {
         id: number | null
