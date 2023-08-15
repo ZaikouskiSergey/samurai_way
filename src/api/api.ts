@@ -53,14 +53,14 @@ export const profileAPI = {
     },
     savePhoto(photoFile: any) {
         const formData = new FormData()
-        formData.append('image',photoFile)
+        formData.append('image', photoFile)
         return instance.put(`profile/photo`, formData, {
             headers: {
-                'Content-Type' : 'multipart/form-data'
+                'Content-Type': 'multipart/form-data'
             }
-        } )
+        })
     },
-    saveProfile(profile: ProfileAPIProps){
+    saveProfile(profile: ProfileAPIProps) {
 
         return instance.put(`profile`, profile)
     }
@@ -69,16 +69,17 @@ export const AuthAPI = {
     me() {
         return instance.get<AuthResponseType>(`auth/me`)
     },
-    login(email: string, password: string, rememberMe: boolean) {
-        return instance.post(`auth/login`, {email, password, rememberMe})
+    login(email: string, password: string, rememberMe: boolean = false, captcha: string = '') {
+        debugger
+        return instance.post(`auth/login`, {email, password, rememberMe, captcha})
     },
     logOut() {
         return instance.delete(`auth/login`)
     }
 }
 
-export const securityAPI ={
-    getCaptchaUrl(){
+export const securityAPI = {
+    getCaptchaUrl() {
         return instance.get(`security/get-captcha-url`)
     }
 }

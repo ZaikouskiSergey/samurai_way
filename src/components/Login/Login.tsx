@@ -12,9 +12,9 @@ type FormDataType = {
     email: string
     password: string
     rememberMe: boolean
-    captchaUrl: string
+    captcha: string
 }
-export const LoginForm: React.FC<InjectedFormProps & FormDataType> = ({handleSubmit, error, captchaUrl}) => {
+export const LoginForm: React.FC<InjectedFormProps & any> = ({handleSubmit, error, captchaUrl}) => {
     console.log(captchaUrl)
     return (
         <form onSubmit={handleSubmit}>
@@ -33,6 +33,13 @@ export const LoginForm: React.FC<InjectedFormProps & FormDataType> = ({handleSub
             </div>
 
             {captchaUrl && <img src={captchaUrl}/>}
+            {captchaUrl &&  <div>
+                <Field placeholder={'fill with picture'}
+                                   validate={[requiredField]}
+                                   component={Input}
+                                   name={"captcha"}
+            />
+            </div>}
             {error && <div className={styles.formSummaryError}> {error}</div>}
             <div>
                 <button>login</button>
@@ -44,8 +51,8 @@ export const LoginForm: React.FC<InjectedFormProps & FormDataType> = ({handleSub
 const LoginReduxForm = reduxForm<{}, any>({form: 'login'})(LoginForm)
 const Login = (props: any) => {
     const onSubmit = (formData: FormDataType) => {
-        const {email, password, rememberMe, captchaUrl} = formData
-        props.loginTC(email, password, rememberMe)
+        const {email, password, rememberMe, captcha} = formData
+        props.loginTC(email, password, rememberMe, captcha)
 
     }
     if (props.isAuth) {
