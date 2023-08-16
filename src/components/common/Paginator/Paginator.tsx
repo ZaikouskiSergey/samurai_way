@@ -22,16 +22,11 @@ const Paginator: React.FC<PaginatorProps> = ({
     for (let i = 1; i <= pagesCount; i++) {
         pages.push(i)
     }
-
     let portionCount = Math.ceil(pagesCount / portionSize)
     let [portionNumber, setPortionNumber] = useState<number>(1)
     let leftPortionPageNumber = (portionNumber - 1) * portionSize + 1
     let rightPortionPageNumber = portionNumber * portionSize
 
-
-    // let pagesShow = currentPage > 6
-    //     ? pages.slice(currentPage - 5, currentPage + 5)
-    //     : pages.slice(0, 11)
     return (
 
         <div className={styles.paginator}>
@@ -41,7 +36,7 @@ const Paginator: React.FC<PaginatorProps> = ({
             }
             {pages.filter(p=> p>= leftPortionPageNumber && p<= rightPortionPageNumber)
                 .map(p =>{
-                    //return <span className= { cn ({ [styles.selectedPage]: currentPage === p}, styles.pageNumber)}
+                    //return <span className= { cn (styles.pageNumber, { [styles.selectedPage]: currentPage === p})}
                     return <span className= { currentPage === p ? styles.selectedPage : styles.pageNumber+styles.selectedPage}
                                  key={p}
                                  onClick={(eS) => {onPageChanged(p)}
@@ -55,5 +50,4 @@ const Paginator: React.FC<PaginatorProps> = ({
         </div>
     )
 }
-
 export default Paginator;

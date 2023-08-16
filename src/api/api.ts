@@ -87,7 +87,6 @@ export type AuthResponseType = {
         id: number | null
         login: string
         email: string
-
     }
     resultCode: number
     messages: string | Array<string>

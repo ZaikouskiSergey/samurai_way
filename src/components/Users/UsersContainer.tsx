@@ -37,13 +37,11 @@ class UsersContainer extends React.Component<UsersAPIProps, any> {
         const {getUsersTC, currentPage, pageSize} = this.props
         getUsersTC(currentPage, pageSize)
     }
-
     onPageChanged = (currentNumber: number) => {
         const {setCurrentPage, getUsersTC, pageSize} = this.props
         setCurrentPage(currentNumber)
         getUsersTC(currentNumber, pageSize)
     }
-
     render() {
         return <>
             {this.props.isFetching && <Preloader/>}

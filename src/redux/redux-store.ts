@@ -9,7 +9,6 @@ import {reducer as formReducer} from "redux-form";
 import {useDispatch} from "react-redux";
 import {appReducer} from "redux/app-reducer";
 
-
 export type stateType = {
     profilePage: {
         posts: Array<PostsType>
