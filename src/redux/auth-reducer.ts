@@ -44,7 +44,6 @@ export const getAuthUserData = () => async (dispatch: Dispatch) => {
     } catch (e) {
     }
 }
-
 export const loginTC = (email: string, password: string, rememberMe: boolean, captcha:string ) => {
     return async (dispatch: Dispatch) => {
         const response = await AuthAPI.login(email, password, rememberMe, captcha)
@@ -62,7 +61,6 @@ export const loginTC = (email: string, password: string, rememberMe: boolean, ca
         }
     };
 }
-
 export const getCaptchaUrl = () => async (dispatch: Dispatch) => {
     const response = await securityAPI.getCaptchaUrl()
     const captchaUrl = response.data.url
