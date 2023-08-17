@@ -56,8 +56,8 @@ class ProfileContainer extends React.Component<any, any> {
         this.props.getUserStatus(userId)
     }
     componentDidMount() {
-        this.refreshProfile()    }
-
+        this.refreshProfile()
+    }
     componentDidUpdate(prevProps: Readonly<any>, prevState: Readonly<any>, snapshot?: any) {
         if (this.props.match.params.userId != prevProps.match.params.userId) {
             this.refreshProfile()

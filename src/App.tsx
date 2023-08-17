@@ -27,16 +27,13 @@ class App extends React.Component<AppContainerPropsType> {
     catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
         console.error(promiseRejectionEvent)
     }
-
     componentDidMount() {
         this.props.initializeApp();
         window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
-
     componentWillUnmount() {
         window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
-
     render() {
         if (!this.props.initialized) {
             return <Preloader/>

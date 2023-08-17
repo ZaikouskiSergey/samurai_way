@@ -103,7 +103,6 @@ export type InitialStateUsersType = {
     isFetching: boolean
     followingInProgress: Array<number>
 }
-
 export type UserType = {
     name: string
     id: number

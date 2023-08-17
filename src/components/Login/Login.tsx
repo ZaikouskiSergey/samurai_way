@@ -47,7 +47,6 @@ export const LoginForm: React.FC<InjectedFormProps & any> = ({handleSubmit, erro
         </form>
     )
 }
-
 const LoginReduxForm = reduxForm<{}, any>({form: 'login'})(LoginForm)
 const Login = (props: any) => {
     const onSubmit = (formData: FormDataType) => {
