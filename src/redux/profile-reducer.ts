@@ -1,4 +1,3 @@
-
 import {ProfileAPIProps} from "components/Profile/ProfileContainer";
 import {Dispatch} from "redux";
 import {profileAPI, usersAPI} from "api/api";
@@ -13,7 +12,7 @@ const initialState = {
         {id: 3, message: "Blabla", likesCount: 2}
     ],
     profile: {
-        aboutMe:'',
+        aboutMe: '',
         userId: 0,
         lookingForAJob: true,
         lookingForAJobDescription: 'lookingForAJobDescription',
@@ -53,7 +52,7 @@ export const profileReducer = (state: ProfileInitialStateType = initialState, ac
         case "profileReducer/DELETE-POST": {
             return {...state, posts: state.posts.filter(p => p.id !== action.userId)}
         }
-        case "profileReducer/SAVE-PHOTO-SUCCESS":{
+        case "profileReducer/SAVE-PHOTO-SUCCESS": {
             return {...state, profile: {...state.profile, photos: action.photos}}
         }
         default:
@@ -82,8 +81,13 @@ export const getUserProfile = (userId: number) => async (dispatch: Dispatch) => 
     dispatch(setUserProfile(response.data))
 }
 export const getUserStatus = (userId: number) => async (dispatch: Dispatch) => {
-    const response = await profileAPI.getStatus(userId)
-    dispatch(setUserStatusAC(response.data))
+    try {
+        const response = await profileAPI.getStatus(userId)
+        dispatch(setUserStatusAC(response.data))
+    } catch (e:any) {
+        console.log(e.status)
+    }
+
 }
 export const updateUserStatus = (status: string) => async (dispatch: Dispatch) => {
     const response = await profileAPI.updateStatus(status)
@@ -97,15 +101,15 @@ export const savePhoto = (file: any) => async (dispatch: Dispatch) => {
         dispatch(savePhotoSuccessAC(response.data.data.photos))
     }
 }
-export const saveProfile = (profile: ProfileAPIProps) => async (dispatch: AppThunkDispatch, getState:() => RootState) => {
+export const saveProfile = (profile: ProfileAPIProps) => async (dispatch: AppThunkDispatch, getState: () => RootState) => {
     const userId = getState().auth.id
     const response = await profileAPI.saveProfile(profile)
     if (response.data.resultCode === 0) {
-        if(userId){
+        if (userId) {
             dispatch<any>(getUserProfile(userId))
         }
     } else {
-        const contactsName = response.data.messages[0].split('>')[1].slice(0,-1).toLowerCase()
+        const contactsName = response.data.messages[0].split('>')[1].slice(0, -1).toLowerCase()
         dispatch(stopSubmit("edit-profile", {"contacts": {[contactsName]: response.data.messages[0]}}))
         return Promise.reject(response.data.messages[0])
     }

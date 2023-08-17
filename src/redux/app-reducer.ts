@@ -2,7 +2,8 @@ import {Dispatch} from "redux";
 import {getAuthUserData} from "redux/auth-reducer";
 
 const initialState = {
-    initialized: false
+    initialized: false,
+    globalError: null
 }
 export const appReducer = (state: InitialStateAppType = initialState, action: ActionsUsersType) => {
     switch (action.type) {

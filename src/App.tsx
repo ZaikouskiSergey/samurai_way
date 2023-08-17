@@ -24,8 +24,17 @@ type AppContainerPropsType = {
 }
 
 class App extends React.Component<AppContainerPropsType> {
+    catchAllUnhandledErrors = (promiseRejectionEvent: any) => {
+        console.error(promiseRejectionEvent)
+    }
+
     componentDidMount() {
-        this.props.initializeApp()
+        this.props.initializeApp();
+        window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+    }
+
+    componentWillUnmount() {
+        window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
     }
 
     render() {
@@ -39,7 +48,7 @@ class App extends React.Component<AppContainerPropsType> {
                 <div className='app-wrapper-content'>
                     <Switch>
                         <Route exact path="/"
-                               render={()=> <Redirect to={"/profile"}/>}/>
+                               render={() => <Redirect to={"/profile"}/>}/>
                         <Route path="/profile/:userId?"
                                render={WithSuspense(ProfileContainer)}/>
                         <Route path="/dialogs"
